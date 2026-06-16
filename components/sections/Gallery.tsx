@@ -44,7 +44,7 @@ export function Gallery() {
   return (
     <section
       id={SECTION_IDS.gallery}
-      className="section-shell section-gallery section-divider py-20 md:py-28"
+      className="section-shell section-gallery section-divider py-10 md:py-14"
       aria-labelledby={headingId}
     >
       <Container>

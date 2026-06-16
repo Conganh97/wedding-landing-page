@@ -1,3 +1,19 @@
+/**
+ * ============================================================
+ * CHỈNH SỬA CÂU CHUYỆN TÌNH YÊU — CAROUSEL LOVE STORY
+ * File: data/timeline.ts
+ * Hiển thị tại: Section "Chuyện tình yêu"
+ * ============================================================
+ *
+ * Mỗi object = 1 slide carousel:
+ *   year        → Năm mốc (vd: "2019")
+ *   title       → Tiêu đề câu chuyện
+ *   description → Nội dung mô tả
+ *   image       → (tuỳ chọn) URL ảnh hoặc "/images/ten-anh.jpg"
+ *                 Bỏ field image nếu slide không cần ảnh
+ *
+ * Thêm/bớt slide: copy/xoá object trong mảng timelineData
+ */
 import type { TimelineItem } from "@/types";
 
 export const timelineData: TimelineItem[] = [

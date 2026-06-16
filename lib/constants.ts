@@ -1,3 +1,7 @@
+/**
+ * Menu điều hướng — label lấy từ data/content.ts (nav)
+ * Đổi tên menu: sửa data/content.ts → nav.home, nav.story, ...
+ */
 import type { NavLink } from "@/types";
 import { content } from "@/data/content";
 

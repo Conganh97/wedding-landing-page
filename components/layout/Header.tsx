@@ -33,6 +33,7 @@ export function Header() {
   }, [isOpen]);
 
   const coupleName = `${weddingData.couple.groom} & ${weddingData.couple.bride}`;
+  const onHero = !isScrolled;
 
   return (
     <header
@@ -40,7 +41,9 @@ export function Header() {
         "fixed top-0 right-0 left-0 z-50 transition-all duration-300",
         isScrolled
           ? "border-b border-champagne/15 bg-pearl/90 shadow-sm backdrop-blur-md"
-          : "bg-transparent",
+          : isOpen
+            ? "border-b border-white/10 bg-charcoal/50 backdrop-blur-md"
+            : "bg-transparent",
       )}
     >
       <a
@@ -53,7 +56,12 @@ export function Header() {
       <div className="mx-auto flex max-w-6xl items-center justify-between px-4 py-4 sm:px-6 lg:px-8">
         <a
           href="#home"
-          className="font-serif text-base tracking-widest text-charcoal transition-colors hover:text-champagne md:text-lg"
+          className={cn(
+            "font-serif text-base tracking-widest transition-colors md:text-lg",
+            onHero
+              ? "text-white drop-shadow-sm hover:text-champagne"
+              : "text-charcoal hover:text-champagne",
+          )}
         >
           {coupleName}
         </a>
@@ -66,7 +74,12 @@ export function Header() {
             <a
               key={link.href}
               href={link.href}
-              className="text-sm tracking-wide text-charcoal-light transition-colors hover:text-champagne"
+              className={cn(
+                "text-sm tracking-wide transition-colors",
+                onHero
+                  ? "text-white/90 drop-shadow-sm hover:text-champagne"
+                  : "text-charcoal-light hover:text-champagne",
+              )}
             >
               {link.label}
             </a>
@@ -85,7 +98,10 @@ export function Header() {
             {isOpen ? content.header.close : content.header.menu}
           </span>
           <svg
-            className="h-6 w-6 text-charcoal"
+            className={cn(
+              "h-6 w-6 transition-colors",
+              onHero ? "text-white drop-shadow-sm" : "text-charcoal",
+            )}
             fill="none"
             viewBox="0 0 24 24"
             stroke="currentColor"
@@ -113,7 +129,10 @@ export function Header() {
       <nav
         id="mobile-menu"
         className={cn(
-          "border-t border-champagne/20 bg-linen/95 md:hidden",
+          "border-t md:hidden",
+          onHero
+            ? "border-white/15 bg-charcoal/85 backdrop-blur-md"
+            : "border-champagne/20 bg-linen/95",
           isOpen ? "block" : "hidden",
         )}
         aria-label={content.header.mobileNav}
@@ -123,7 +142,12 @@ export function Header() {
             <li key={link.href}>
               <a
                 href={link.href}
-                className="block py-3 text-sm tracking-wide text-charcoal-light transition-colors hover:text-champagne"
+                className={cn(
+                  "block py-3 text-sm tracking-wide transition-colors",
+                  onHero
+                    ? "text-white/90 hover:text-champagne"
+                    : "text-charcoal-light hover:text-champagne",
+                )}
                 onClick={() => setIsOpen(false)}
               >
                 {link.label}

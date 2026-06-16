@@ -4,16 +4,24 @@ import { formatDate } from "@/lib/utils";
 import { NAV_LINKS } from "@/lib/constants";
 
 export function Footer() {
-  const coupleName = `${weddingData.couple.groom} & ${weddingData.couple.bride}`;
+  const { groom, bride } = weddingData.couple;
   const weddingDate = formatDate(weddingData.weddingDate);
 
   return (
-    <footer className="footer-elegant border-t border-champagne/25 py-12">
+    <footer className="footer-elegant border-t border-champagne/25 py-8">
       <div className="mx-auto max-w-6xl px-4 sm:px-6 lg:px-8">
         <div className="flex flex-col items-center gap-6 text-center">
-          <p className="font-serif text-2xl tracking-widest text-charcoal">
-            {coupleName}
-          </p>
+          <div className="flex flex-col items-center gap-1">
+            <span className="font-serif text-xl tracking-[0.12em] text-charcoal sm:text-2xl">
+              {groom}
+            </span>
+            <span className="font-serif text-lg text-champagne sm:text-xl">
+              &
+            </span>
+            <span className="font-serif text-xl tracking-[0.12em] text-charcoal sm:text-2xl">
+              {bride}
+            </span>
+          </div>
           <p className="text-sm text-charcoal-light">{weddingDate}</p>
           <div className="gold-divider" />
           <nav aria-label={content.header.footerNav}>

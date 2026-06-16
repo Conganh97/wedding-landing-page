@@ -1,3 +1,23 @@
+/**
+ * ============================================================
+ * CHỈNH SỬA TEXT GIAO DIỆN (TIẾNG VIỆT)
+ * File: data/content.ts
+ * Hiển thị tại: Menu, tiêu đề section, form RSVP, toast, SEO
+ * ============================================================
+ *
+ * nav          → Tên menu Header/Footer
+ * hero         → Nút "Xác nhận tham dự" trên Hero
+ * countdown    → Nhãn đếm ngược (Ngày, Giờ, Phút, Giây)
+ * story        → Tiêu đề & subtitle carousel Love Story
+ * gallery      → Tiêu đề section Thư viện ảnh
+ * events       → Tiêu đề section Thông tin sự kiện
+ * rsvp         → Toàn bộ label/placeholder/nút form RSVP + thông báo toast
+ * footer       → Dòng chữ cuối Footer
+ * header       → Text menu mobile, skip link
+ * seo          → Mô tả trang (Google, Facebook share)
+ *
+ * Lưu ý: Tên & ngày cưới lấy từ data/wedding.ts, không sửa ở đây
+ */
 export const content = {
   nav: {
     home: "Trang chủ",
@@ -19,7 +39,12 @@ export const content = {
   },
   story: {
     title: "Chuyện tình yêu",
-    subtitle: "Mỗi tình yêu đẹp đều có một khởi đầu. Đây là câu chuyện của chúng mình.",
+    subtitle: "Vuốt hoặc bấm để khám phá những khoảnh khắc đáng nhớ của chúng mình",
+    prev: "Câu chuyện trước",
+    next: "Câu chuyện tiếp",
+    goToSlide: "Đến câu chuyện",
+    slideOf: (current: number, total: number) =>
+      `${current} / ${total}`,
   },
   gallery: {
     title: "Thư viện ảnh",

@@ -38,11 +38,10 @@ export type WeddingData = {
 };
 
 export type RsvpPayload = {
-  timestamp: string;
   name: string;
   phone: string;
-  attendance: "yes" | "no";
-  guestCount: number | null;
+  attendance: "YES" | "NO";
+  guestCount: number;
   message: string;
 };
 

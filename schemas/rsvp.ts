@@ -1,3 +1,7 @@
+/**
+ * Validation form RSVP — sửa thông báo lỗi tiếng Việt tại đây
+ * Label form: data/content.ts → rsvp.*
+ */
 import { z } from "zod";
 
 export const rsvpSchema = z

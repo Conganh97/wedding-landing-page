@@ -69,7 +69,7 @@ export function RsvpForm() {
   return (
     <section
       id={SECTION_IDS.rsvp}
-      className="section-shell section-rsvp section-divider py-20 md:py-28"
+      className="section-shell section-rsvp section-divider py-10 md:py-14"
       aria-labelledby={headingId}
     >
       <Container>

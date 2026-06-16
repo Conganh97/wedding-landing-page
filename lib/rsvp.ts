@@ -1,32 +1,35 @@
 import type { RsvpFormValues } from "@/schemas/rsvp";
 import type { RsvpPayload } from "@/types";
 
-export async function submitRsvp(values: RsvpFormValues): Promise<void> {
-  const apiUrl = process.env.NEXT_PUBLIC_RSVP_API;
+function buildPayload(values: RsvpFormValues): RsvpPayload {
+  const attending = values.attendance === "yes";
 
-  if (!apiUrl) {
-    throw new Error("RSVP API URL is not configured");
-  }
-
-  const payload: RsvpPayload = {
-    timestamp: new Date().toISOString(),
-    name: values.name,
-    phone: values.phone,
-    attendance: values.attendance,
-    guestCount: values.attendance === "yes" ? (values.guestCount ?? null) : null,
-    message: values.message ?? "",
+  return {
+    name: values.name.trim(),
+    phone: values.phone.trim(),
+    attendance: attending ? "YES" : "NO",
+    guestCount: attending ? (values.guestCount ?? 1) : 0,
+    message: values.message?.trim() ?? "",
   };
+}
 
-  const response = await fetch(apiUrl, {
+export async function submitRsvp(values: RsvpFormValues): Promise<void> {
+  const payload = buildPayload(values);
+
+  const response = await fetch("/api/rsvp", {
     method: "POST",
-    mode: "cors",
     headers: {
       "Content-Type": "application/json",
     },
     body: JSON.stringify(payload),
   });
 
-  if (!response.ok) {
-    throw new Error(`RSVP submission failed with status ${response.status}`);
+  const result = (await response.json().catch(() => null)) as {
+    success?: boolean;
+    error?: string;
+  } | null;
+
+  if (!response.ok || result?.success === false) {
+    throw new Error(result?.error ?? "RSVP submission failed");
   }
 }

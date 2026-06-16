@@ -1,3 +1,20 @@
+/**
+ * ============================================================
+ * CHỈNH SỬA THƯ VIỆN ẢNH
+ * File: data/gallery.ts
+ * Hiển thị tại: Section "Thư viện ảnh"
+ * ============================================================
+ *
+ * Mỗi object = 1 ảnh trong gallery:
+ *   id     → Mã duy nhất (vd: "1", "2"...)
+ *   src    → URL ảnh hoặc "/images/ten-anh.jpg" (đặt file trong public/images/)
+ *   alt    → Mô tả ảnh (SEO & accessibility)
+ *   width  → Chiều rộng gốc (giữ tỉ lệ, vd: 800)
+ *   height → Chiều cao gốc (vd: 1000 cho ảnh dọc, 600 cho ảnh ngang)
+ *
+ * Thêm/bớt ảnh: copy/xoá object trong mảng galleryData
+ * Ảnh local: copy vào public/images/ rồi dùng src: "/images/anh-cuoi-1.jpg"
+ */
 import type { GalleryImage } from "@/types";
 
 export const galleryData: GalleryImage[] = [

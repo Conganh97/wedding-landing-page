@@ -14,20 +14,20 @@ export function SectionHeading({
   id,
 }: SectionHeadingProps) {
   return (
-    <div className={cn("mb-12 text-center", className)}>
-      <div className="gold-divider mx-auto mb-6" />
+    <div className={cn("mb-8 text-center", className)}>
+      <div className="gold-divider mx-auto mb-4" />
       <h2
         id={id}
-        className="font-serif text-3xl font-light tracking-wide text-charcoal md:text-4xl lg:text-5xl"
+        className="font-serif text-3xl font-light tracking-wide text-charcoal md:text-4xl"
       >
         {title}
       </h2>
       {subtitle && (
-        <p className="mt-4 text-base text-charcoal-light md:text-lg">
+        <p className="mt-2 text-base text-charcoal-light md:text-lg">
           {subtitle}
         </p>
       )}
-      <div className="gold-divider mx-auto mt-6" />
+      <div className="gold-divider mx-auto mt-4" />
     </div>
   );
 }

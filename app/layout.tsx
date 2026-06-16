@@ -6,6 +6,12 @@ import { formatDate } from "@/lib/utils";
 import { ToastProvider } from "@/components/ui/ToastProvider";
 import "./globals.css";
 
+/**
+ * SEO metadata — tự động lấy tên & ngày từ data/wedding.ts, mô tả từ data/content.ts
+ * Ảnh share Facebook/Zalo: thay file public/images/og.jpg (khuyến nghị 1200x630px)
+ * Domain production: cấu hình NEXT_PUBLIC_SITE_URL trong .env.local
+ */
+
 const cormorant = Cormorant_Garamond({
   variable: "--font-cormorant",
   subsets: ["latin", "vietnamese"],

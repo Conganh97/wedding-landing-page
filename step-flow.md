@@ -47,7 +47,8 @@ Production-ready wedding landing page built with Next.js App Router, TypeScript,
 ### Phase 6 — Integration
 - [x] `app/page.tsx` — composes all sections
 - [x] `app/layout.tsx` — SEO metadata, OpenGraph, Twitter cards, ToastProvider
-- [x] RSVP POST to `NEXT_PUBLIC_RSVP_API` with auto timestamp injection
+- [x] RSVP qua `/api/rsvp` (proxy server-side, tránh CORS Google Apps Script)
+- [x] `.env.local` với `RSVP_API_URL`
 - [x] Success/error toast notifications via Sonner
 
 ### Phase 7 — Assets and Config
@@ -61,27 +62,47 @@ Production-ready wedding landing page built with Next.js App Router, TypeScript,
 
 ---
 
+## Hướng dẫn chỉnh sửa nội dung
+
+| Muốn sửa | File | Ghi chú |
+|----------|------|---------|
+| Tên, ngày cưới, ảnh Hero, lời mời | `data/wedding.ts` | `weddingDate` dùng ISO `YYYY-MM-DDTHH:mm:ss` |
+| Carousel Love Story | `data/timeline.ts` | Thêm/xoá slide trong mảng |
+| Thư viện ảnh | `data/gallery.ts` | Ảnh local → `public/images/` + `src: "/images/..."` |
+| Lễ cưới, tiệc, địa điểm | `data/events.ts` | Sửa `date`, `time`, `venue`, `mapUrl` |
+| Text menu, tiêu đề, form RSVP | `data/content.ts` | Toàn bộ chữ tiếng Việt trên UI |
+| Ảnh share mạng xã hội | `public/images/og.jpg` | 1200×630px |
+| API gửi RSVP | `.env.local` | `NEXT_PUBLIC_RSVP_API` |
+| SEO / domain | `.env.local` | `NEXT_PUBLIC_SITE_URL` |
+
+Mỗi file trong `data/` có comment chi tiết ở đầu file.
+
+---
+
 ## Steps Remaining
 
 ### Customization (User Action)
 - [x] Updated couple names: chú rể Bùi Công Anh, cô dâu Vũ Thuỳ Dương
 - [x] Redesigned hero couple names: vertical layout (groom / & / bride) with gold dividers
 - [x] Cohesive warm section backgrounds (linen, cream, blush gradients) flowing from hero
+- [x] Love Story converted to compact carousel (prev/next, dots, keyboard nav)
+- [x] Reduced vertical spacing between sections (tighter padding & headings)
+- [x] Footer couple names: vertical layout on mobile (no awkward line breaks)
+- [x] Header nav: light text on hero, dark text when scrolled
 - [ ] Replace Unsplash image URLs with your own photos in `data/gallery.ts` and `data/wedding.ts`
 - [ ] Update `public/images/og.jpg` with your own Open Graph image
 - [ ] Set `NEXT_PUBLIC_SITE_URL` to your production domain
 
-### Google Apps Script Setup (User Action)
-- [ ] Create Google Sheet with columns: Timestamp, Name, Phone, Attendance, GuestCount, Message
-- [ ] Deploy Apps Script Web App (Execute as Me, Anyone access)
-- [ ] Copy deployment URL to `.env.local` as `NEXT_PUBLIC_RSVP_API`
+### Google Apps Script Setup
+- [x] Google Apps Script deployed & tested (curl + form integration)
+- [x] `NEXT_PUBLIC_RSVP_API` configured in `.env.local`
+- [ ] Sheet columns: Name, Phone, Attendance, GuestCount, Message
 
 ```javascript
 function doPost(e) {
   const data = JSON.parse(e.postData.contents);
   const sheet = SpreadsheetApp.getActiveSpreadsheet().getActiveSheet();
   sheet.appendRow([
-    data.timestamp,
     data.name,
     data.phone,
     data.attendance,
