@@ -3,7 +3,6 @@
 import { useState } from "react";
 import { useForm, Controller } from "react-hook-form";
 import { zodResolver } from "@hookform/resolvers/zod";
-import { motion, useReducedMotion } from "framer-motion";
 import { toast } from "sonner";
 import { rsvpSchema, type RsvpFormValues } from "@/schemas/rsvp";
 import { content } from "@/data/content";
@@ -20,6 +19,7 @@ import { Textarea } from "@/components/ui/Textarea";
 import { Select } from "@/components/ui/Select";
 import { RadioGroup } from "@/components/ui/RadioGroup";
 import { Button } from "@/components/ui/Button";
+import { Reveal } from "@/components/ui/Reveal";
 
 const guestCountOptions = Array.from({ length: 10 }, (_, i) => ({
   value: String(i + 1),
@@ -28,7 +28,6 @@ const guestCountOptions = Array.from({ length: 10 }, (_, i) => ({
 
 export function RsvpForm() {
   const [isSubmitting, setIsSubmitting] = useState(false);
-  const shouldReduceMotion = useReducedMotion();
   const headingId = "rsvp-heading";
 
   const {
@@ -73,17 +72,16 @@ export function RsvpForm() {
       aria-labelledby={headingId}
     >
       <Container>
-        <SectionHeading
-          id={headingId}
-          title={content.rsvp.title}
-          subtitle={content.rsvp.subtitle}
-        />
+        <Reveal>
+          <SectionHeading
+            id={headingId}
+            title={content.rsvp.title}
+            subtitle={content.rsvp.subtitle}
+          />
+        </Reveal>
 
-        <motion.form
-          initial={shouldReduceMotion ? false : { opacity: 0, y: 30 }}
-          whileInView={{ opacity: 1, y: 0 }}
-          viewport={{ once: true, margin: "-60px" }}
-          transition={{ duration: 0.5 }}
+        <Reveal delay={0.08}>
+          <form
           onSubmit={handleSubmit(onSubmit)}
           className="card-elegant mx-auto max-w-lg space-y-6 rounded-sm p-8"
           noValidate
@@ -161,7 +159,8 @@ export function RsvpForm() {
               {content.rsvp.submit}
             </Button>
           </div>
-        </motion.form>
+        </form>
+        </Reveal>
       </Container>
     </section>
   );

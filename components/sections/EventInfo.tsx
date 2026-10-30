@@ -1,11 +1,11 @@
 "use client";
 
-import { motion, useReducedMotion } from "framer-motion";
 import { eventsData } from "@/data/events";
 import { content } from "@/data/content";
 import { SECTION_IDS } from "@/lib/constants";
 import { Container } from "@/components/ui/Container";
 import { SectionHeading } from "@/components/ui/SectionHeading";
+import { Reveal } from "@/components/ui/Reveal";
 
 function LocationIcon() {
   return (
@@ -70,8 +70,26 @@ function CalendarIcon() {
   );
 }
 
+function ExternalLinkIcon() {
+  return (
+    <svg
+      className="h-4 w-4"
+      fill="none"
+      viewBox="0 0 24 24"
+      stroke="currentColor"
+      aria-hidden="true"
+    >
+      <path
+        strokeLinecap="round"
+        strokeLinejoin="round"
+        strokeWidth={1.5}
+        d="M10 6H6a2 2 0 00-2 2v10a2 2 0 002 2h10a2 2 0 002-2v-4M14 4h6m0 0v6m0-6L10 14"
+      />
+    </svg>
+  );
+}
+
 export function EventInfo() {
-  const shouldReduceMotion = useReducedMotion();
   const headingId = "events-heading";
 
   return (
@@ -81,82 +99,72 @@ export function EventInfo() {
       aria-labelledby={headingId}
     >
       <Container>
-        <SectionHeading
-          id={headingId}
-          title={content.events.title}
-          subtitle={content.events.subtitle}
-        />
+        <Reveal>
+          <SectionHeading
+            id={headingId}
+            title={content.events.title}
+            subtitle={content.events.subtitle}
+          />
+        </Reveal>
 
         <div className="grid gap-8 md:grid-cols-2">
-          {eventsData.map((event, index) => (
-            <motion.article
-              key={event.id}
-              initial={shouldReduceMotion ? false : { opacity: 0, y: 30 }}
-              whileInView={{ opacity: 1, y: 0 }}
-              viewport={{ once: true, margin: "-60px" }}
-              transition={{ duration: 0.5, delay: index * 0.15 }}
-              className="card-elegant rounded-sm p-8"
-            >
-              <p className="text-xs tracking-[0.2em] text-champagne uppercase">
-                {event.typeLabel}
-              </p>
-              <h3 className="mt-2 font-serif text-2xl text-charcoal">
-                {event.title}
-              </h3>
+          {eventsData.map((event, index) => {
+            return (
+              <Reveal key={event.id} delay={index * 0.12}>
+                <article className="card-elegant flex h-full flex-col rounded-sm p-6 md:p-8">
+                  <p className="text-xs tracking-[0.2em] text-champagne uppercase">
+                    {event.typeLabel}
+                  </p>
+                  <h3 className="mt-2 font-serif text-2xl text-charcoal">
+                    {event.title}
+                  </h3>
 
-              <ul className="mt-6 flex flex-col gap-4">
-                <li className="flex items-start gap-3">
-                  <CalendarIcon />
-                  <span className="text-sm text-charcoal-light">{event.date}</span>
-                </li>
-                <li className="flex items-start gap-3">
-                  <ClockIcon />
-                  <span className="text-sm text-charcoal-light">{event.time}</span>
-                </li>
-                <li className="flex items-start gap-3">
-                  <LocationIcon />
-                  <div>
-                    <p className="text-sm font-medium text-charcoal">
-                      {event.venue}
+                  <ul className="mt-6 flex flex-col gap-4">
+                    <li className="flex items-start gap-3">
+                      <CalendarIcon />
+                      <span className="text-sm text-charcoal-light">
+                        {event.date}
+                      </span>
+                    </li>
+                    <li className="flex items-start gap-3">
+                      <ClockIcon />
+                      <span className="text-sm text-charcoal-light">
+                        {event.time}
+                      </span>
+                    </li>
+                    <li className="flex items-start gap-3">
+                      <LocationIcon />
+                      <div>
+                        <p className="text-sm font-medium text-charcoal">
+                          {event.venue}
+                        </p>
+                        <p className="text-sm text-charcoal-light">
+                          {event.address}
+                        </p>
+                      </div>
+                    </li>
+                  </ul>
+
+                  <div className="mt-6 border-t border-rose-dark/20 pt-6">
+                    <p className="text-xs tracking-widest text-charcoal-light uppercase">
+                      {content.events.dressCode}
                     </p>
-                    <p className="text-sm text-charcoal-light">
-                      {event.address}
+                    <p className="mt-1 text-sm text-charcoal">
+                      {event.dressCode}
                     </p>
                   </div>
-                </li>
-              </ul>
 
-              <div className="mt-6 border-t border-rose-dark/20 pt-6">
-                <p className="text-xs tracking-widest text-charcoal-light uppercase">
-                  {content.events.dressCode}
-                </p>
-                <p className="mt-1 text-sm text-charcoal">{event.dressCode}</p>
-              </div>
-
-              <a
-                href={event.mapUrl}
-                target="_blank"
-                rel="noopener noreferrer"
-                className="mt-6 inline-flex items-center gap-2 text-sm text-champagne transition-colors hover:text-champagne-dark"
-              >
-                {content.events.viewMap}
-                <svg
-                  className="h-4 w-4"
-                  fill="none"
-                  viewBox="0 0 24 24"
-                  stroke="currentColor"
-                  aria-hidden="true"
-                >
-                  <path
-                    strokeLinecap="round"
-                    strokeLinejoin="round"
-                    strokeWidth={1.5}
-                    d="M10 6H6a2 2 0 00-2 2v10a2 2 0 002 2h10a2 2 0 002-2v-4M14 4h6m0 0v6m0-6L10 14"
-                  />
-                </svg>
-              </a>
-            </motion.article>
-          ))}
+                  <a
+                    href={`#${SECTION_IDS.venue}`}
+                    className="mt-6 inline-flex items-center gap-2 text-sm text-champagne transition-colors hover:text-champagne-dark"
+                  >
+                    {content.events.viewVenueMap}
+                    <ExternalLinkIcon />
+                  </a>
+                </article>
+              </Reveal>
+            );
+          })}
         </div>
       </Container>
     </section>

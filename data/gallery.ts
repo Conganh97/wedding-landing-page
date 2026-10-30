@@ -24,6 +24,7 @@ export const galleryData: GalleryImage[] = [
     alt: "Cô dâu cầm bó hoa hồng trắng",
     width: 800,
     height: 1000,
+    layout: "feature",
   },
   {
     id: "2",
@@ -31,6 +32,7 @@ export const galleryData: GalleryImage[] = [
     alt: "Nhẫn cưới trên nền nhung",
     width: 800,
     height: 600,
+    layout: "default",
   },
   {
     id: "3",
@@ -38,6 +40,7 @@ export const galleryData: GalleryImage[] = [
     alt: "Cặp đôi nắm tay dưới ánh hoàng hôn",
     width: 800,
     height: 1000,
+    layout: "tall",
   },
   {
     id: "4",
@@ -45,6 +48,7 @@ export const galleryData: GalleryImage[] = [
     alt: "Bàn tiệc cưới trang trí tinh tế với nến",
     width: 800,
     height: 600,
+    layout: "wide",
   },
   {
     id: "5",
@@ -52,6 +56,7 @@ export const galleryData: GalleryImage[] = [
     alt: "Cổng hoa trong khu vườn tiệc cưới",
     width: 800,
     height: 1000,
+    layout: "tall",
   },
   {
     id: "6",
@@ -59,5 +64,6 @@ export const galleryData: GalleryImage[] = [
     alt: "Nâng ly champagne chúc mừng",
     width: 800,
     height: 600,
+    layout: "wide",
   },
 ];

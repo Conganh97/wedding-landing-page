@@ -14,7 +14,8 @@
  *   venue      → Tên địa điểm
  *   address    → Địa chỉ đầy đủ
  *   dressCode  → Trang phục (vd: "Trang phục lịch sự")
- *   mapUrl     → Link Google Maps (mở khi bấm "Xem trên Google Maps")
+ *   mapUrl     → Link Google Maps (mở app / tab mới)
+ *   mapEmbedQuery → (Tuỳ chọn) Địa chỉ hoặc lat,lng cho bản đồ nhúng; bỏ trống = venue + address
  *
  * Thêm sự kiện: thêm object mới vào mảng eventsData
  */

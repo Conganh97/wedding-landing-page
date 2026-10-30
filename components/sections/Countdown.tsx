@@ -6,6 +6,7 @@ import { content } from "@/data/content";
 
 type CountdownProps = {
   targetDate: string;
+  variant?: "hero" | "section";
 };
 
 type TimeLeft = {
@@ -44,7 +45,8 @@ const units: { key: keyof TimeLeft; label: string }[] = [
   { key: "seconds", label: content.countdown.seconds },
 ];
 
-export function Countdown({ targetDate }: CountdownProps) {
+export function Countdown({ targetDate, variant = "hero" }: CountdownProps) {
+  const isHero = variant === "hero";
   const [timeLeft, setTimeLeft] = useState<TimeLeft>(emptyTimeLeft);
   const shouldReduceMotion = useReducedMotion();
 
@@ -73,15 +75,29 @@ export function Countdown({ targetDate }: CountdownProps) {
             duration: 0.5,
             delay: shouldReduceMotion ? 0 : index * 0.1,
           }}
-          className="flex min-w-[72px] flex-col items-center rounded-sm border border-white/30 bg-white/10 px-4 py-3 backdrop-blur-sm sm:min-w-[88px] sm:px-6 sm:py-4"
+          className={
+            isHero
+              ? "flex min-w-[72px] flex-col items-center rounded-sm border border-white/30 bg-white/10 px-4 py-3 backdrop-blur-sm sm:min-w-[88px] sm:px-6 sm:py-4"
+              : "flex min-w-[72px] flex-col items-center rounded-sm border border-champagne/30 bg-pearl/90 px-4 py-3 shadow-sm sm:min-w-[88px] sm:px-6 sm:py-4"
+          }
         >
           <span
-            className="font-serif text-2xl font-light text-white sm:text-3xl md:text-4xl"
+            className={
+              isHero
+                ? "font-serif text-2xl font-light text-white sm:text-3xl md:text-4xl"
+                : "font-serif text-2xl font-light text-charcoal sm:text-3xl md:text-4xl"
+            }
             suppressHydrationWarning
           >
             {String(timeLeft[unit.key]).padStart(2, "0")}
           </span>
-          <span className="mt-1 text-xs tracking-widest text-white/80 uppercase sm:text-sm">
+          <span
+            className={
+              isHero
+                ? "mt-1 text-xs tracking-widest text-white/80 uppercase sm:text-sm"
+                : "mt-1 text-xs tracking-widest text-charcoal-light uppercase sm:text-sm"
+            }
+          >
             {unit.label}
           </span>
         </motion.div>

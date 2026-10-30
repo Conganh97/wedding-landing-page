@@ -68,8 +68,20 @@ Production-ready wedding landing page built with Next.js App Router, TypeScript,
 |----------|------|---------|
 | Tên, ngày cưới, ảnh Hero, lời mời | `data/wedding.ts` | `weddingDate` dùng ISO `YYYY-MM-DDTHH:mm:ss` |
 | Carousel Love Story | `data/timeline.ts` | Thêm/xoá slide trong mảng |
-| Thư viện ảnh | `data/gallery.ts` | Ảnh local → `public/images/` + `src: "/images/..."` |
-| Lễ cưới, tiệc, địa điểm | `data/events.ts` | Sửa `date`, `time`, `venue`, `mapUrl` |
+| Thư viện ảnh | `data/gallery.ts` | Carousel; trường `layout` giữ cho tương lai / lightbox |
+| Lời mời & lịch | `data/intro.ts`, `data/invitation.ts`, `lib/calendar-utils.ts` | Intro, thiệp formal, lịch tháng, thêm vào Google Calendar |
+| Bản đồ riêng | `data/venue.ts`, `VenueMapSection` | Map nhấn để tải; sự kiện link xuống `#venue` |
+| Ảnh cô dâu chú rể (gia đình) | `data/family.ts` | `public/images/family/groom-portrait.jpg`, `bride-portrait.jpg` |
+| Mừng cưới & QR | `data/gifts.ts` | `public/images/gifts/` — card, portrait, qr-groom, qr-bride |
+| Sổ chúc phúc (Sheet chung) | `.env.local` + `docs/guestbook-google-apps-script.md` | `GUESTBOOK_API_URL` — mọi khách thấy chữ ký trên ảnh |
+| Ảnh nền ký tên | `data/guestbook.ts` | `public/images/guestbook/couple-board.jpg` |
+| Ảnh Thank You | `data/thanks.ts` | `public/images/thanks/thank-you.jpg` |
+| Ảnh cô dâu/chú rể (đầu trang) | `data/family.ts` | `groom-portrait.jpg`, `bride-portrait.jpg` — section Trân trọng kính mời |
+| Nhạc nền | `data/music.ts` | `public/audio/wedding-music.mp3` |
+| Thư mời / mở phong bì | `data/invitation.ts` | gateTitle, lunarDate, displayDate, lời mời |
+| Hai bên gia đình | `data/family.ts` | Nhà trai, nhà gái |
+| Lễ cưới, tiệc, địa điểm | `data/events.ts` | `venue`, `address`, `mapUrl`, `mapEmbedQuery` (lat,lng) |
+| Google Maps nhúng | `.env.local` | Tuỳ chọn `NEXT_PUBLIC_GOOGLE_MAPS_EMBED_KEY` |
 | Text menu, tiêu đề, form RSVP | `data/content.ts` | Toàn bộ chữ tiếng Việt trên UI |
 | Ảnh share mạng xã hội | `public/images/og.jpg` | 1200×630px |
 | API gửi RSVP | `.env.local` | `NEXT_PUBLIC_RSVP_API` |
@@ -85,10 +97,16 @@ Mỗi file trong `data/` có comment chi tiết ở đầu file.
 - [x] Updated couple names: chú rể Bùi Công Anh, cô dâu Vũ Thuỳ Dương
 - [x] Redesigned hero couple names: vertical layout (groom / & / bride) with gold dividers
 - [x] Cohesive warm section backgrounds (linen, cream, blush gradients) flowing from hero
-- [x] Love Story converted to compact carousel (prev/next, dots, keyboard nav)
+- [x] Bỏ section Câu chuyện; Thư viện ảnh dạng carousel (mũi tên + dots + thumbnail, giống mẫu 27biggroup)
+- [x] Mừng cưới (thiệp → modal QR 2 bên), Sổ chúc phúc, nhạc nền
+- [x] Gia đình: cầu nối ảnh cô dâu/chú rể; bỏ tên trùng cuối section
+- [x] Scroll reveal: mount trang sau mở thiệp + `Reveal` thống nhất
 - [x] Reduced vertical spacing between sections (tighter padding & headings)
 - [x] Footer couple names: vertical layout on mobile (no awkward line breaks)
 - [x] Header nav: light text on hero, dark text when scrolled
+- [x] Hiệu ứng mở thiệp — full màn hình: ruy băng, ấn dấu ảnh cặp đôi, chữ script, cánh cửa hai bên (tông charcoal/champagne, không xanh-đỏ mẫu)
+- [x] Cấu trúc trang theo mẫu 27biggroup: Hero → IntroStory → Family → FormalInvitation → Events → Calendar → Countdown → Schedule → Venue map → Gallery → Guestbook → RSVP → Wishes → Gifts → Thank You
+- [x] Sections: IntroStory, FormalInvitation, WeddingCalendar, CountdownSection, VenueMapSection, WeddingWishes, FamilyInfo, WeddingSchedule, ThankYou (đã gỡ InvitationQuote)
 - [ ] Replace Unsplash image URLs with your own photos in `data/gallery.ts` and `data/wedding.ts`
 - [ ] Update `public/images/og.jpg` with your own Open Graph image
 - [ ] Set `NEXT_PUBLIC_SITE_URL` to your production domain

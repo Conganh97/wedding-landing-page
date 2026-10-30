@@ -4,16 +4,12 @@ import Image from "next/image";
 import { motion, useReducedMotion } from "framer-motion";
 import { weddingData } from "@/data/wedding";
 import { content } from "@/data/content";
-import { formatDate } from "@/lib/utils";
 import { SECTION_IDS } from "@/lib/constants";
-import { Countdown } from "./Countdown";
+import { invitationData } from "@/data/invitation";
 
 export function Hero() {
   const shouldReduceMotion = useReducedMotion();
-  const { couple, weddingDate, tagline, heroEyebrow, heroImage, heroImageAlt } =
-    weddingData;
-  const formattedDate = formatDate(weddingDate);
-
+  const { couple, tagline, heroEyebrow, heroImage, heroImageAlt } = weddingData;
   return (
     <section
       id={SECTION_IDS.hero}
@@ -38,7 +34,7 @@ export function Hero() {
           transition={{ duration: 0.8 }}
           className="mb-6 text-sm tracking-[0.3em] text-white/90 uppercase sm:text-base"
         >
-          {heroEyebrow}
+          {content.hero.saveTheDate}
         </motion.p>
 
         <motion.h1
@@ -74,9 +70,25 @@ export function Hero() {
           initial={shouldReduceMotion ? false : { opacity: 0, y: 20 }}
           animate={{ opacity: 1, y: 0 }}
           transition={{ duration: 0.8, delay: 0.4 }}
-          className="mt-8 font-serif text-lg text-white/90 italic sm:text-xl md:text-2xl"
+          className="mt-8 font-serif text-2xl tracking-[0.2em] text-champagne md:text-3xl"
         >
-          {formattedDate}
+          {invitationData.displayDate}
+        </motion.p>
+        <motion.p
+          initial={shouldReduceMotion ? false : { opacity: 0, y: 20 }}
+          animate={{ opacity: 1, y: 0 }}
+          transition={{ duration: 0.8, delay: 0.45 }}
+          className="mt-2 text-sm text-white/85"
+        >
+          {invitationData.lunarDate}
+        </motion.p>
+        <motion.p
+          initial={shouldReduceMotion ? false : { opacity: 0, y: 20 }}
+          animate={{ opacity: 1, y: 0 }}
+          transition={{ duration: 0.8, delay: 0.48 }}
+          className="mt-4 font-serif text-lg text-white/90 italic sm:text-xl"
+        >
+          {heroEyebrow}
         </motion.p>
 
         <motion.p
@@ -89,19 +101,10 @@ export function Hero() {
         </motion.p>
 
         <motion.div
-          initial={shouldReduceMotion ? false : { opacity: 0, y: 20 }}
-          animate={{ opacity: 1, y: 0 }}
-          transition={{ duration: 0.8, delay: 0.7 }}
-          className="mt-12"
-        >
-          <Countdown targetDate={weddingDate} />
-        </motion.div>
-
-        <motion.div
           initial={shouldReduceMotion ? false : { opacity: 0 }}
           animate={{ opacity: 1 }}
-          transition={{ duration: 0.8, delay: 1 }}
-          className="mt-16"
+          transition={{ duration: 0.8, delay: 0.75 }}
+          className="mt-14"
         >
           <a
             href={`#${SECTION_IDS.rsvp}`}

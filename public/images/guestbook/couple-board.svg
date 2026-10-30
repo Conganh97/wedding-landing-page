@@ -1,0 +1,16 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="900" height="1120" viewBox="0 0 900 1120">
+  <defs>
+    <linearGradient id="sky" x1="0" y1="0" x2="0" y2="1">
+      <stop offset="0%" stop-color="#e8ddd0"/>
+      <stop offset="100%" stop-color="#d4c8b8"/>
+    </linearGradient>
+  </defs>
+  <rect width="900" height="1120" fill="url(#sky)"/>
+  <ellipse cx="450" cy="980" rx="320" ry="40" fill="#000" opacity="0.08"/>
+  <circle cx="320" cy="380" r="100" fill="#c4b8a6"/>
+  <circle cx="580" cy="380" r="100" fill="#e2d6ca"/>
+  <path fill="#b0a494" d="M250 520c40-60 80-90 70-90s30 30 70 90v280H250V520z"/>
+  <path fill="#d4b8b0" d="M510 520c40-60 80-90 70-90s30 30 70 90v280H510V520z"/>
+  <text x="450" y="920" text-anchor="middle" fill="#5a5a5a" font-family="Georgia, serif" font-size="28">¢nh cô dâu &amp; chú rÃ</text>
+  <text x="450" y="960" text-anchor="middle" fill="#c9a96e" font-family="sans-serif" font-size="16">public/images/guestbook/couple-board.jpg</text>
+</svg>

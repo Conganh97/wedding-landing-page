@@ -1,5 +1,5 @@
 import type { Metadata } from "next";
-import { Cormorant_Garamond, Lato } from "next/font/google";
+import { Cormorant_Garamond, Great_Vibes, Lato } from "next/font/google";
 import { weddingData } from "@/data/wedding";
 import { content } from "@/data/content";
 import { formatDate } from "@/lib/utils";
@@ -23,6 +23,13 @@ const lato = Lato({
   variable: "--font-lato",
   subsets: ["latin", "latin-ext"],
   weight: ["300", "400", "700"],
+  display: "swap",
+});
+
+const greatVibes = Great_Vibes({
+  variable: "--font-signature",
+  subsets: ["latin"],
+  weight: ["400"],
   display: "swap",
 });
 
@@ -70,7 +77,7 @@ export default function RootLayout({
   return (
     <html
       lang="vi"
-      className={`light ${cormorant.variable} ${lato.variable} h-full antialiased`}
+      className={`light ${cormorant.variable} ${lato.variable} ${greatVibes.variable} h-full antialiased`}
     >
       <body className="min-h-full flex flex-col font-sans">
         {children}

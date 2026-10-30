@@ -9,14 +9,25 @@ import type { GalleryImage } from "@/types";
 import { SECTION_IDS } from "@/lib/constants";
 import { Container } from "@/components/ui/Container";
 import { SectionHeading } from "@/components/ui/SectionHeading";
+import { Reveal } from "@/components/ui/Reveal";
 
 export function Gallery() {
+  const [index, setIndex] = useState(0);
   const [selectedImage, setSelectedImage] = useState<GalleryImage | null>(
     null,
   );
   const closeButtonRef = useRef<HTMLButtonElement>(null);
   const shouldReduceMotion = useReducedMotion();
   const headingId = "gallery-heading";
+  const total = galleryData.length;
+  const current = galleryData[index];
+
+  const go = useCallback(
+    (delta: number) => {
+      setIndex((i) => (i + delta + total) % total);
+    },
+    [total],
+  );
 
   const closeLightbox = useCallback(() => {
     setSelectedImage(null);
@@ -24,22 +35,27 @@ export function Gallery() {
 
   useEffect(() => {
     if (!selectedImage) return;
-
     const handleKeyDown = (e: KeyboardEvent) => {
-      if (e.key === "Escape") {
-        closeLightbox();
-      }
+      if (e.key === "Escape") closeLightbox();
     };
-
     document.addEventListener("keydown", handleKeyDown);
     document.body.style.overflow = "hidden";
     closeButtonRef.current?.focus();
-
     return () => {
       document.removeEventListener("keydown", handleKeyDown);
       document.body.style.overflow = "";
     };
   }, [selectedImage, closeLightbox]);
+
+  useEffect(() => {
+    const onKey = (e: KeyboardEvent) => {
+      if (selectedImage) return;
+      if (e.key === "ArrowLeft") go(-1);
+      if (e.key === "ArrowRight") go(1);
+    };
+    window.addEventListener("keydown", onKey);
+    return () => window.removeEventListener("keydown", onKey);
+  }, [go, selectedImage]);
 
   return (
     <section
@@ -48,41 +64,90 @@ export function Gallery() {
       aria-labelledby={headingId}
     >
       <Container>
-        <SectionHeading
-          id={headingId}
-          title={content.gallery.title}
-          subtitle={content.gallery.subtitle}
-        />
+        <Reveal>
+          <SectionHeading
+            id={headingId}
+            title={content.gallery.title}
+            subtitle={content.gallery.subtitle}
+          />
+        </Reveal>
 
-        <div className="grid grid-cols-2 gap-3 sm:gap-4 md:grid-cols-3 lg:grid-cols-3">
-          {galleryData.map((image, index) => (
-            <motion.button
-              key={image.id}
+        <Reveal delay={0.08} className="mx-auto max-w-3xl">
+          <div className="relative overflow-hidden rounded-md border border-champagne/25 bg-pearl shadow-md">
+            <button
               type="button"
-              initial={shouldReduceMotion ? false : { opacity: 0, scale: 0.95 }}
-              whileInView={{ opacity: 1, scale: 1 }}
-              viewport={{ once: true, margin: "-40px" }}
-              transition={{ duration: 0.4, delay: index * 0.05 }}
-              whileHover={shouldReduceMotion ? undefined : { scale: 1.02 }}
-              className="group relative aspect-[3/4] overflow-hidden rounded-sm border border-champagne/15 shadow-sm focus:outline-none sm:aspect-[4/5]"
-              onClick={() => setSelectedImage(image)}
-              aria-label={`${content.gallery.viewImage}: ${image.alt}`}
+              onClick={() => go(-1)}
+              className="absolute top-1/2 left-2 z-10 flex h-10 w-10 -translate-y-1/2 items-center justify-center rounded-full bg-white/90 text-charcoal shadow hover:bg-white"
+              aria-label={content.gallery.prev}
+            >
+              ‹
+            </button>
+            <button
+              type="button"
+              onClick={() => go(1)}
+              className="absolute top-1/2 right-2 z-10 flex h-10 w-10 -translate-y-1/2 items-center justify-center rounded-full bg-white/90 text-charcoal shadow hover:bg-white"
+              aria-label={content.gallery.next}
+            >
+              ›
+            </button>
+
+            <motion.button
+              type="button"
+              key={current.id}
+              initial={shouldReduceMotion ? false : { opacity: 0 }}
+              animate={{ opacity: 1 }}
+              transition={{ duration: 0.35 }}
+              className="relative block aspect-[4/5] w-full md:aspect-[16/10]"
+              onClick={() => setSelectedImage(current)}
+              aria-label={`${content.gallery.viewImage}: ${current.alt}`}
             >
               <Image
-                src={image.src}
-                alt={image.alt}
+                src={current.src}
+                alt={current.alt}
                 fill
-                sizes="(max-width: 640px) 50vw, (max-width: 1024px) 33vw, 400px"
+                className="object-cover"
+                sizes="(max-width: 768px) 100vw, 768px"
                 priority={index === 0}
-                className="object-cover transition-transform duration-500 group-hover:scale-105"
               />
-              <div
-                className="absolute inset-0 bg-charcoal/0 transition-colors duration-300 group-hover:bg-charcoal/20"
-                aria-hidden="true"
-              />
+              <div className="absolute inset-x-0 bottom-0 bg-linear-to-t from-charcoal/70 to-transparent px-6 py-6 text-left">
+                <p className="text-sm text-white/95 md:text-base">{current.alt}</p>
+                <p className="mt-1 text-xs text-white/70">
+                  {content.gallery.slideOf(index + 1, total)}
+                </p>
+              </div>
             </motion.button>
-          ))}
-        </div>
+          </div>
+
+          <div className="mt-4 flex flex-wrap justify-center gap-2">
+            {galleryData.map((img, i) => (
+              <button
+                key={img.id}
+                type="button"
+                onClick={() => setIndex(i)}
+                className={`h-2.5 w-2.5 rounded-full transition ${
+                  i === index ? "bg-champagne" : "bg-champagne/30"
+                }`}
+                aria-label={`${content.gallery.goToSlide} ${i + 1}`}
+                aria-current={i === index ? true : undefined}
+              />
+            ))}
+          </div>
+
+          <div className="mt-4 grid grid-cols-4 gap-2 sm:grid-cols-7">
+            {galleryData.map((img, i) => (
+              <button
+                key={`thumb-${img.id}`}
+                type="button"
+                onClick={() => setIndex(i)}
+                className={`relative aspect-square overflow-hidden rounded-sm border-2 ${
+                  i === index ? "border-champagne" : "border-transparent opacity-70"
+                }`}
+              >
+                <Image src={img.src} alt="" fill className="object-cover" sizes="80px" />
+              </button>
+            ))}
+          </div>
+        </Reveal>
       </Container>
 
       <AnimatePresence>
@@ -91,7 +156,7 @@ export function Gallery() {
             initial={{ opacity: 0 }}
             animate={{ opacity: 1 }}
             exit={{ opacity: 0 }}
-            className="fixed inset-0 z-50 flex items-center justify-center bg-charcoal/90 p-4"
+            className="fixed inset-0 z-50 flex items-center justify-center bg-charcoal/92 p-4 backdrop-blur-sm"
             role="dialog"
             aria-modal="true"
             aria-label={selectedImage.alt}
@@ -100,31 +165,17 @@ export function Gallery() {
             <button
               ref={closeButtonRef}
               type="button"
-              className="absolute top-4 right-4 z-10 flex h-10 w-10 items-center justify-center rounded-full bg-white/10 text-white transition-colors hover:bg-white/20"
+              className="absolute top-4 right-4 z-10 flex h-10 w-10 items-center justify-center rounded-full bg-white/10 text-white hover:bg-white/20"
               onClick={closeLightbox}
               aria-label={content.gallery.closeImage}
             >
-              <svg
-                className="h-6 w-6"
-                fill="none"
-                viewBox="0 0 24 24"
-                stroke="currentColor"
-                aria-hidden="true"
-              >
-                <path
-                  strokeLinecap="round"
-                  strokeLinejoin="round"
-                  strokeWidth={1.5}
-                  d="M6 18L18 6M6 6l12 12"
-                />
-              </svg>
+              ×
             </button>
-
             <motion.div
-              initial={shouldReduceMotion ? false : { scale: 0.9 }}
+              initial={shouldReduceMotion ? false : { scale: 0.92 }}
               animate={{ scale: 1 }}
-              exit={{ scale: 0.9 }}
-              className="relative max-h-[85vh] max-w-4xl"
+              exit={{ scale: 0.92 }}
+              className="relative max-h-[85vh] max-w-5xl"
               onClick={(e) => e.stopPropagation()}
             >
               <Image
@@ -132,11 +183,8 @@ export function Gallery() {
                 alt={selectedImage.alt}
                 width={selectedImage.width}
                 height={selectedImage.height}
-                className="max-h-[85vh] w-auto rounded-sm object-contain"
+                className="max-h-[85vh] w-auto rounded-md object-contain"
               />
-              <p className="mt-4 text-center text-sm text-white/80">
-                {selectedImage.alt}
-              </p>
             </motion.div>
           </motion.div>
         )}
