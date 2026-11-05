@@ -66,7 +66,7 @@ export function InvitationRibbonSeal({
         </span>
       </motion.button>
 
-      <p className="mt-5 text-center font-serif text-sm italic text-white/75 sm:text-base">
+      <p className="mt-5 text-center font-serif text-base italic text-white/80 md:text-lg">
         {hint}
       </p>
     </div>

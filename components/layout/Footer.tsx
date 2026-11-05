@@ -4,7 +4,7 @@ import { formatDate } from "@/lib/utils";
 import { NAV_LINKS } from "@/lib/constants";
 
 export function Footer() {
-  const { groom, bride } = weddingData.couple;
+  const { groomShort: groom, brideShort: bride } = weddingData.couple;
   const weddingDate = formatDate(weddingData.weddingDate);
 
   return (

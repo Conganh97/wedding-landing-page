@@ -5,7 +5,6 @@ import { useForm } from "react-hook-form";
 import { zodResolver } from "@hookform/resolvers/zod";
 import { motion, useReducedMotion } from "framer-motion";
 import { toast } from "sonner";
-import { guestbookSeed } from "@/data/guestbook";
 import { content } from "@/data/content";
 import {
   fetchGuestbookEntries,
@@ -29,24 +28,16 @@ import { Input } from "@/components/ui/Input";
 import { Textarea } from "@/components/ui/Textarea";
 import { Button } from "@/components/ui/Button";
 import { GuestbookPhotoFrame } from "@/components/guestbook/GuestbookPhotoFrame";
+import { WishesMarquee } from "@/components/guestbook/WishesMarquee";
 import {
   SignaturePad,
   type SignaturePadHandle,
 } from "@/components/guestbook/SignaturePad";
 
-function prepareSeed(entries: GuestbookEntry[]): GuestbookEntry[] {
-  return entries.map((entry, index) => ({
-    ...entry,
-    slotIndex: entry.slotIndex ?? index,
-  }));
-}
-
 type SignStep = "idle" | "draw" | "place";
 
 export function BlessingGuestbook() {
-  const [entries, setEntries] = useState<GuestbookEntry[]>(() =>
-    prepareSeed(guestbookSeed),
-  );
+  const [entries, setEntries] = useState<GuestbookEntry[]>([]);
   const [hydrated, setHydrated] = useState(false);
   const [lastAddedId, setLastAddedId] = useState<string | null>(null);
   const [submitting, setSubmitting] = useState(false);
@@ -57,6 +48,7 @@ export function BlessingGuestbook() {
   const signatureRef = useRef<SignaturePadHandle>(null);
   const shouldReduceMotion = useReducedMotion();
   const headingId = "guestbook-heading";
+  const wishesHeadingId = "wishes-heading";
 
   const {
     register,
@@ -75,11 +67,10 @@ export function BlessingGuestbook() {
       try {
         const remote = await fetchGuestbookEntries();
         if (cancelled) return;
-        setEntries(mergeGuestbookEntries(prepareSeed(guestbookSeed), remote));
+        setEntries(mergeGuestbookEntries(remote));
       } catch {
         if (cancelled) return;
-        const stored = loadStoredGuestbook();
-        setEntries(mergeGuestbookEntries(prepareSeed(guestbookSeed), stored));
+        setEntries(mergeGuestbookEntries(loadStoredGuestbook()));
       } finally {
         if (!cancelled) setHydrated(true);
       }
@@ -93,9 +84,12 @@ export function BlessingGuestbook() {
 
   useEffect(() => {
     if (!hydrated) return;
-    const userEntries = entries.filter((e) => !e.id.startsWith("seed-"));
-    saveGuestbookEntries(userEntries);
+    saveGuestbookEntries(entries);
   }, [entries, hydrated]);
+
+  const signatureEntries = entries.filter((e) =>
+    Boolean(e.signatureDataUrl?.trim()),
+  );
 
   const closeFlow = () => {
     setStep("idle");
@@ -148,15 +142,18 @@ export function BlessingGuestbook() {
 
       if (mode === "remote") {
         const remote = await fetchGuestbookEntries();
-        setEntries(mergeGuestbookEntries(prepareSeed(guestbookSeed), remote));
-        setLastAddedId(`sheet-${createdAt}`);
+        setEntries(mergeGuestbookEntries(remote));
+        const match = remote.find(
+          (e) => e.createdAt === createdAt || e.message === message,
+        );
+        setLastAddedId(match?.id ?? remote[0]?.id ?? null);
       } else {
         const id = `local-${Date.now()}`;
         const newEntry: GuestbookEntry = {
           id,
           ...payload,
         };
-        setEntries((prev) => [newEntry, ...prev]);
+        setEntries((prev) => mergeGuestbookEntries([newEntry], prev));
         setLastAddedId(id);
       }
 
@@ -190,7 +187,7 @@ export function BlessingGuestbook() {
               {content.guestbook.poeticLine}
             </p>
             <GuestbookPhotoFrame
-              entries={entries}
+              entries={signatureEntries}
               lastAddedId={lastAddedId}
               placementMode={step === "place"}
               placementPreview={
@@ -199,7 +196,6 @@ export function BlessingGuestbook() {
                       dataUrl: draftSignature,
                       x: placement.x,
                       y: placement.y,
-                      message: draftMessage,
                     }
                   : null
               }
@@ -328,6 +324,23 @@ export function BlessingGuestbook() {
             )}
           </Reveal>
         </div>
+
+        <Reveal delay={0.12} className="mt-14 md:mt-16">
+          <div
+            id={SECTION_IDS.wishes}
+            className="mx-auto max-w-3xl border-t border-champagne/25 pt-10 md:pt-12"
+            aria-labelledby={wishesHeadingId}
+          >
+            <SectionHeading
+              id={wishesHeadingId}
+              title={content.wishes.title}
+              subtitle={content.wishes.subtitle}
+            />
+            <div className="mt-6">
+              <WishesMarquee entries={entries} highlightId={lastAddedId} />
+            </div>
+          </div>
+        </Reveal>
       </Container>
     </section>
   );

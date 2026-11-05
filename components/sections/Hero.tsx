@@ -6,6 +6,7 @@ import { weddingData } from "@/data/wedding";
 import { content } from "@/data/content";
 import { SECTION_IDS } from "@/lib/constants";
 import { invitationData } from "@/data/invitation";
+import { Countdown } from "@/components/sections/Countdown";
 
 export function Hero() {
   const shouldReduceMotion = useReducedMotion();
@@ -101,10 +102,19 @@ export function Hero() {
         </motion.p>
 
         <motion.div
+          initial={shouldReduceMotion ? false : { opacity: 0, y: 16 }}
+          animate={{ opacity: 1, y: 0 }}
+          transition={{ duration: 0.8, delay: 0.62 }}
+          className="mt-10"
+        >
+          <Countdown targetDate={weddingData.weddingDate} variant="hero" />
+        </motion.div>
+
+        <motion.div
           initial={shouldReduceMotion ? false : { opacity: 0 }}
           animate={{ opacity: 1 }}
           transition={{ duration: 0.8, delay: 0.75 }}
-          className="mt-14"
+          className="mt-10 sm:mt-12"
         >
           <a
             href={`#${SECTION_IDS.rsvp}`}

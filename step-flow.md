@@ -71,7 +71,7 @@ Production-ready wedding landing page built with Next.js App Router, TypeScript,
 | Thư viện ảnh | `data/gallery.ts` | Carousel; trường `layout` giữ cho tương lai / lightbox |
 | Lời mời & lịch | `data/intro.ts`, `data/invitation.ts`, `lib/calendar-utils.ts` | Intro, thiệp formal, lịch tháng, thêm vào Google Calendar |
 | Bản đồ riêng | `data/venue.ts`, `VenueMapSection` | Map nhấn để tải; sự kiện link xuống `#venue` |
-| Ảnh cô dâu chú rể (gia đình) | `data/family.ts` | `public/images/family/groom-portrait.jpg`, `bride-portrait.jpg` |
+| Ảnh cô dâu chú rể | `data/family.ts` | `couplePortrait` (ảnh chung — intro); `groom-portrait` / `bride-portrait` (section gia đình) |
 | Mừng cưới & QR | `data/gifts.ts` | `public/images/gifts/` — card, portrait, qr-groom, qr-bride |
 | Sổ chúc phúc (Sheet chung) | `.env.local` + `docs/guestbook-google-apps-script.md` | `GUESTBOOK_API_URL` — mọi khách thấy chữ ký trên ảnh |
 | Ảnh nền ký tên | `data/guestbook.ts` | `public/images/guestbook/couple-board.jpg` |
@@ -106,7 +106,8 @@ Mỗi file trong `data/` có comment chi tiết ở đầu file.
 - [x] Header nav: light text on hero, dark text when scrolled
 - [x] Hiệu ứng mở thiệp — full màn hình: ruy băng, ấn dấu ảnh cặp đôi, chữ script, cánh cửa hai bên (tông charcoal/champagne, không xanh-đỏ mẫu)
 - [x] Cấu trúc trang theo mẫu 27biggroup: Hero → IntroStory → Family → FormalInvitation → Events → Calendar → Countdown → Schedule → Venue map → Gallery → Guestbook → RSVP → Wishes → Gifts → Thank You
-- [x] Sections: IntroStory, FormalInvitation, WeddingCalendar, CountdownSection, VenueMapSection, WeddingWishes, FamilyInfo, WeddingSchedule, ThankYou (đã gỡ InvitationQuote)
+- [x] Lời chúc nằm dưới ký tên (marquee khi ≥3), data từ API — không mock seed
+- [x] Sections: IntroStory, FormalInvitation, WeddingCalendar, CountdownSection, VenueMapSection, FamilyInfo, WeddingSchedule, ThankYou (đã gỡ InvitationQuote)
 - [ ] Replace Unsplash image URLs with your own photos in `data/gallery.ts` and `data/wedding.ts`
 - [ ] Update `public/images/og.jpg` with your own Open Graph image
 - [ ] Set `NEXT_PUBLIC_SITE_URL` to your production domain

@@ -79,8 +79,12 @@ export type EventDetail = {
 
 export type WeddingData = {
   couple: {
+    /** Họ tên đầy đủ — Hero, section Hai họ */
     groom: string;
     bride: string;
+    /** Tên gọi (không họ) — header, footer, thiệp, v.v. */
+    groomShort: string;
+    brideShort: string;
   };
   weddingDate: string;
   tagline: string;
@@ -106,6 +110,7 @@ export type FamilyData = {
   announcement: string;
   groomSide: FamilySide;
   brideSide: FamilySide;
+  couplePortrait: FamilyPortrait;
   groomPortrait: FamilyPortrait;
   bridePortrait: FamilyPortrait;
 };

@@ -70,25 +70,6 @@ function CalendarIcon() {
   );
 }
 
-function ExternalLinkIcon() {
-  return (
-    <svg
-      className="h-4 w-4"
-      fill="none"
-      viewBox="0 0 24 24"
-      stroke="currentColor"
-      aria-hidden="true"
-    >
-      <path
-        strokeLinecap="round"
-        strokeLinejoin="round"
-        strokeWidth={1.5}
-        d="M10 6H6a2 2 0 00-2 2v10a2 2 0 002 2h10a2 2 0 002-2v-4M14 4h6m0 0v6m0-6L10 14"
-      />
-    </svg>
-  );
-}
-
 export function EventInfo() {
   const headingId = "events-heading";
 
@@ -153,14 +134,6 @@ export function EventInfo() {
                       {event.dressCode}
                     </p>
                   </div>
-
-                  <a
-                    href={`#${SECTION_IDS.venue}`}
-                    className="mt-6 inline-flex items-center gap-2 text-sm text-champagne transition-colors hover:text-champagne-dark"
-                  >
-                    {content.events.viewVenueMap}
-                    <ExternalLinkIcon />
-                  </a>
                 </article>
               </Reveal>
             );

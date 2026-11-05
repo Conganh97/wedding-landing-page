@@ -9,7 +9,7 @@ import { Container } from "@/components/ui/Container";
 import { Reveal } from "@/components/ui/Reveal";
 
 export function ThankYou() {
-  const { groom, bride } = weddingData.couple;
+  const { groomShort: groom, brideShort: bride } = weddingData.couple;
 
   return (
     <section

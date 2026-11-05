@@ -21,7 +21,6 @@ export function BlessingPin({ entry, index, animateIn }: BlessingPinProps) {
         rotate: -6 + (index % 5) * 3,
       }
     : slotForIndex(entry.slotIndex ?? index);
-  const showMessage = entry.message.trim().length > 0;
   const showName = entry.name.trim().length > 0 && !hasSignature;
 
   return (
@@ -33,7 +32,7 @@ export function BlessingPin({ entry, index, animateIn }: BlessingPinProps) {
       }
       animate={{ opacity: 1, scale: 1, y: 0 }}
       transition={{ duration: 0.55, ease: [0.22, 1, 0.36, 1] }}
-      className="pointer-events-none absolute z-10 max-w-[46%] text-center"
+      className="pointer-events-none absolute z-10 max-w-[38%] text-center"
       style={{
         top: `${slot.top}%`,
         left: `${slot.left}%`,
@@ -55,13 +54,6 @@ export function BlessingPin({ entry, index, animateIn }: BlessingPinProps) {
         {showName && (
           <p className="guestbook-signature text-[clamp(1rem,4vw,1.45rem)] leading-none text-white drop-shadow-[0_2px_8px_rgba(0,0,0,0.55)]">
             {entry.name}
-          </p>
-        )}
-        {showMessage && (
-          <p
-            className={`mt-1 rounded-sm bg-white/90 px-2 py-1 text-[10px] leading-snug text-charcoal shadow-sm backdrop-blur-sm md:text-xs ${hasSignature ? "max-w-[140px]" : ""}`}
-          >
-            {entry.message}
           </p>
         )}
       </div>

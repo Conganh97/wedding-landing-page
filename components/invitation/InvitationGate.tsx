@@ -19,7 +19,7 @@ export function InvitationGate({ onOpen }: InvitationGateProps) {
   const [phase, setPhase] = useState<"idle" | "opening">("idle");
   const [visible, setVisible] = useState(true);
   const shouldReduceMotion = useReducedMotion();
-  const { groom, bride } = weddingData.couple;
+  const { groomShort: groom, brideShort: bride } = weddingData.couple;
   const { heroImage, heroImageAlt } = weddingData;
 
   useEffect(() => {
@@ -96,10 +96,17 @@ export function InvitationGate({ onOpen }: InvitationGateProps) {
             {invitationData.gateEyebrow}
           </p>
 
-          <h1 className="invitation-script invitation-couple-names mt-4 text-[clamp(2.25rem,9vw,3.75rem)] leading-[1.15] text-white">
-            {groom}
-            <span className="mx-2 text-champagne/95">&</span>
-            {bride}
+          <h1 className="invitation-couple-names mx-auto mt-4 w-full max-w-2xl px-1 font-serif text-[clamp(1.65rem,5.2vw,2.85rem)] font-light leading-snug tracking-[0.06em] text-white">
+            <span className="mx-auto flex max-w-full flex-col items-center justify-center gap-1 min-[420px]:flex-row min-[420px]:flex-wrap min-[420px]:justify-center min-[420px]:gap-x-3 min-[420px]:gap-y-1 md:flex-nowrap md:gap-x-4">
+              <span className="text-center whitespace-nowrap">{groom}</span>
+              <span
+                className="shrink-0 font-serif text-[0.92em] leading-none text-champagne"
+                aria-hidden="true"
+              >
+                &
+              </span>
+              <span className="text-center whitespace-nowrap">{bride}</span>
+            </span>
           </h1>
 
           <InvitationRibbonSeal
@@ -111,14 +118,14 @@ export function InvitationGate({ onOpen }: InvitationGateProps) {
             hint={invitationData.sealHint}
           />
 
-          <div className="mx-auto max-w-sm">
-            <p className="font-serif text-sm tracking-[0.2em] text-white/85 uppercase sm:text-base">
+          <div className="mx-auto max-w-md">
+            <p className="font-serif text-base tracking-[0.2em] text-white/85 uppercase md:text-lg">
               {invitationData.quoteTitle}
             </p>
-            <p className="mt-2 font-serif text-2xl tracking-[0.08em] text-white sm:text-[1.65rem]">
+            <p className="mt-3 font-serif text-2xl tracking-[0.08em] text-white md:text-3xl">
               {invitationData.quoteGuest}
             </p>
-            <p className="mt-2 text-sm leading-relaxed text-white/70">
+            <p className="mt-3 text-base leading-relaxed text-white/75 md:text-lg">
               {invitationData.quoteBody}
             </p>
           </div>
@@ -129,12 +136,12 @@ export function InvitationGate({ onOpen }: InvitationGateProps) {
             disabled={isOpening}
             whileHover={!isOpening ? { scale: 1.02 } : undefined}
             whileTap={!isOpening ? { scale: 0.98 } : undefined}
-            className="invitation-open-btn invitation-open-btn--gate mx-auto mt-8 block min-w-[200px] px-10 py-3.5 text-sm tracking-[0.32em] uppercase disabled:opacity-50"
+            className="invitation-open-btn invitation-open-btn--gate mx-auto mt-8 block min-w-[220px] px-10 py-4 text-base tracking-[0.32em] uppercase disabled:opacity-50 md:text-lg"
           >
             {invitationData.openButton}
           </motion.button>
 
-          <p className="mt-6 font-serif text-sm italic text-champagne/80">
+          <p className="mt-6 font-serif text-base italic text-champagne/80 md:text-lg">
             {invitationData.blessing}
           </p>
         </div>

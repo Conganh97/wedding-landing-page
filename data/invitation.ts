@@ -10,6 +10,6 @@ export const invitationData: InvitationData = {
   quoteGuest: "Quý khách",
   quoteBody: "tới dự bữa tiệc chung vui cùng gia đình chúng mình",
   blessing: "Trăm năm hạnh phúc, vẹn duyên phu thê",
-  lunarDate: "Nhằm ngày 25 tháng 7 năm Bính Ngọ",
-  displayDate: "15 · 09 · 2026",
+  lunarDate: "Nhằm ngày 10 tháng 12 năm Bính Ngọ",
+  displayDate: "17 · 01 · 2027",
 };

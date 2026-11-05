@@ -7,7 +7,7 @@
 import type { GiftData } from "@/types";
 import { weddingData } from "@/data/wedding";
 
-const { groom, bride } = weddingData.couple;
+const { groomShort: groom, brideShort: bride } = weddingData.couple;
 
 export const giftData: GiftData = {
   title: "Gửi quà mừng",

@@ -1,5 +1,9 @@
 import { NextResponse } from "next/server";
 import type { GuestbookEntry } from "@/types";
+import {
+  postToGoogleAppsScript,
+  readGasJson,
+} from "@/lib/google-apps-script-fetch";
 
 type GuestbookSubmitBody = {
   name?: string;
@@ -138,25 +142,18 @@ export async function POST(request: Request) {
   }
 
   try {
-    const response = await fetch(apiUrl, {
-      method: "POST",
-      headers: { "Content-Type": "application/json" },
-      body: JSON.stringify(payload),
-      redirect: "follow",
-    });
-
-    const text = await response.text();
-    let result: { success?: boolean } | null = null;
-
-    try {
-      result = JSON.parse(text) as { success?: boolean };
-    } catch {
-      result = { success: response.ok };
-    }
+    const response = await postToGoogleAppsScript(apiUrl, payload);
+    const result = await readGasJson(response);
 
     if (!response.ok || result?.success === false) {
+      const detail =
+        result?.error ??
+        (response.ok ? undefined : `Upstream HTTP ${response.status}`);
       return NextResponse.json(
-        { success: false, error: "Guestbook API rejected the request" },
+        {
+          success: false,
+          error: detail ?? "Guestbook API rejected the request",
+        },
         { status: 502 },
       );
     }

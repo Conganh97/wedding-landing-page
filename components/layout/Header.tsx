@@ -1,7 +1,7 @@
 "use client";
 
 import { useEffect, useState } from "react";
-import { weddingData } from "@/data/wedding";
+import { coupleShortLine } from "@/lib/couple-names";
 import { content } from "@/data/content";
 import { NAV_LINKS } from "@/lib/constants";
 import { cn } from "@/lib/utils";
@@ -32,7 +32,7 @@ export function Header() {
     };
   }, [isOpen]);
 
-  const coupleName = `${weddingData.couple.groom} & ${weddingData.couple.bride}`;
+  const coupleName = coupleShortLine();
   const onHero = !isScrolled;
 
   return (

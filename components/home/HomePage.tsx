@@ -12,13 +12,11 @@ import { FormalInvitation } from "@/components/sections/FormalInvitation";
 import { FamilyInfo } from "@/components/sections/FamilyInfo";
 import { EventInfo } from "@/components/sections/EventInfo";
 import { WeddingCalendar } from "@/components/sections/WeddingCalendar";
-import { CountdownSection } from "@/components/sections/CountdownSection";
 import { WeddingSchedule } from "@/components/sections/WeddingSchedule";
 import { VenueMapSection } from "@/components/sections/VenueMapSection";
 import { Gallery } from "@/components/sections/Gallery";
 import { BlessingGuestbook } from "@/components/sections/BlessingGuestbook";
 import { RsvpForm } from "@/components/sections/RsvpForm";
-import { WeddingWishes } from "@/components/sections/WeddingWishes";
 import { WeddingGifts } from "@/components/sections/WeddingGifts";
 import { ThankYou } from "@/components/sections/ThankYou";
 
@@ -53,14 +51,12 @@ export function HomePage() {
               <FamilyInfo />
               <FormalInvitation />
               <EventInfo />
+              <VenueMapSection compactTop />
               <WeddingCalendar />
-              <CountdownSection />
               <WeddingSchedule />
-              <VenueMapSection />
               <Gallery />
               <BlessingGuestbook />
               <RsvpForm />
-              <WeddingWishes />
               <WeddingGifts />
               <ThankYou />
             </main>

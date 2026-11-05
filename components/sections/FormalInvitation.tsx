@@ -2,6 +2,7 @@
 
 import { invitationData } from "@/data/invitation";
 import { weddingData } from "@/data/wedding";
+import { coupleShortLine } from "@/lib/couple-names";
 import { eventsData } from "@/data/events";
 import { content } from "@/data/content";
 import { SECTION_IDS } from "@/lib/constants";
@@ -21,7 +22,7 @@ export function FormalInvitation() {
   const mainEvent =
     eventsData.find((e) => e.id === "reception") ?? eventsData[0];
   const calendarUrl = googleCalendarUrl({
-    title: `${weddingData.couple.groom} & ${weddingData.couple.bride} — Đám cưới`,
+    title: `${coupleShortLine()} — Đám cưới`,
     startIso: weddingData.weddingDate,
     details: invitationData.quoteBody,
     location: `${mainEvent.venue}, ${mainEvent.address}`,

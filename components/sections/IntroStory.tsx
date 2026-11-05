@@ -10,34 +10,9 @@ import { SECTION_IDS } from "@/lib/constants";
 import { Container } from "@/components/ui/Container";
 import { Reveal } from "@/components/ui/Reveal";
 
-function CouplePortrait({
-  src,
-  alt,
-  roleLabel,
-  name,
-}: {
-  src: string;
-  alt: string;
-  roleLabel: string;
-  name: string;
-}) {
-  return (
-    <div className="flex flex-col items-center">
-      <p className="text-[10px] tracking-[0.28em] text-charcoal-light uppercase md:text-xs">
-        {roleLabel}
-      </p>
-      <div className="relative mt-2 aspect-[3/4] w-[120px] overflow-hidden rounded-sm border-2 border-champagne/45 bg-pearl p-1 shadow-md md:w-[140px]">
-        <div className="relative h-full w-full overflow-hidden rounded-[2px]">
-          <Image src={src} alt={alt} fill className="object-cover" sizes="140px" />
-        </div>
-      </div>
-      <p className="mt-3 font-serif text-lg text-charcoal md:text-xl">{name}</p>
-    </div>
-  );
-}
-
 export function IntroStory() {
   const { groom, bride } = weddingData.couple;
+  const { couplePortrait } = familyData;
 
   return (
     <section
@@ -62,25 +37,25 @@ export function IntroStory() {
             </p>
           ))}
 
-          <div className="mt-10 flex items-end justify-center gap-4 md:gap-8">
-            <CouplePortrait
-              src={familyData.groomPortrait.src}
-              alt={familyData.groomPortrait.alt}
-              roleLabel={content.invitation.groomRole}
-              name={groom}
-            />
-            <span
-              className="pb-16 font-serif text-2xl text-champagne md:pb-20 md:text-3xl"
-              aria-hidden="true"
-            >
-              &
-            </span>
-            <CouplePortrait
-              src={familyData.bridePortrait.src}
-              alt={familyData.bridePortrait.alt}
-              roleLabel={content.invitation.brideRole}
-              name={bride}
-            />
+          <div className="mx-auto mt-10 max-w-sm">
+            <div className="relative mx-auto aspect-[4/5] w-full max-w-[280px] overflow-hidden rounded-sm border-2 border-champagne/45 bg-pearl p-1.5 shadow-md">
+              <div className="relative h-full w-full overflow-hidden rounded-[2px]">
+                <Image
+                  src={couplePortrait.src}
+                  alt={couplePortrait.alt}
+                  fill
+                  className="object-cover"
+                  sizes="(max-width: 768px) 80vw, 280px"
+                />
+              </div>
+            </div>
+            <p className="mt-6 font-serif text-[clamp(1.35rem,4.5vw,1.85rem)] leading-snug tracking-[0.06em] text-charcoal">
+              {groom}
+            </p>
+            <p className="my-2 font-serif text-xl text-champagne md:text-2xl">&</p>
+            <p className="font-serif text-[clamp(1.35rem,4.5vw,1.85rem)] leading-snug tracking-[0.06em] text-charcoal">
+              {bride}
+            </p>
           </div>
         </Reveal>
       </Container>

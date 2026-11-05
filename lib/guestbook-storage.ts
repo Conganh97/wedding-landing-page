@@ -23,16 +23,16 @@ export function saveGuestbookEntries(entries: GuestbookEntry[]): void {
   }
 }
 
+/** Gộp nhiều nguồn (API, local), mới nhất trước — không dùng data mock. */
 export function mergeGuestbookEntries(
-  seed: GuestbookEntry[],
-  stored: GuestbookEntry[],
+  ...lists: GuestbookEntry[][]
 ): GuestbookEntry[] {
   const map = new Map<string, GuestbookEntry>();
-  for (const entry of seed) {
-    map.set(entry.id, entry);
-  }
-  for (const entry of stored) {
-    map.set(entry.id, entry);
+  for (const list of lists) {
+    for (const entry of list) {
+      if (!entry?.id) continue;
+      map.set(entry.id, entry);
+    }
   }
   return Array.from(map.values()).sort((a, b) => {
     const ta = a.createdAt ? Date.parse(a.createdAt) : 0;

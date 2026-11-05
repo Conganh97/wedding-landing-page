@@ -5,7 +5,8 @@
  * Hiển thị tại: Hero, Header, Footer, Countdown, SEO metadata
  * ============================================================
  *
- * groom / bride     → Tên chú rể & cô dâu (Header, Hero, Footer)
+ * groom / bride     → Họ tên đầy đủ (Hero, Hai họ / IntroStory)
+ * groomShort / brideShort → Tên gọi không họ (còn lại trên site)
  * weddingDate       → Ngày giờ cưới, định dạng ISO: "YYYY-MM-DDTHH:mm:ss"
  *                     Dùng cho Countdown + ngày hiển thị trên Hero/Footer
  * tagline           → Lời mời dưới tên ở Hero
@@ -19,8 +20,10 @@ export const weddingData: WeddingData = {
   couple: {
     groom: "Bùi Công Anh",
     bride: "Vũ Thuỳ Dương",
+    groomShort: "Công Anh",
+    brideShort: "Thuỳ Dương",
   },
-  weddingDate: "2026-09-15T16:00:00",
+  weddingDate: "2027-01-17T11:00:00",
   tagline:
     "Cùng với gia đình hai bên, trân trọng kính mời bạn đến chung vui trong ngày trọng đại của chúng mình",
   heroEyebrow: "Chúng mình sắp cưới",

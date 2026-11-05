@@ -161,6 +161,7 @@ Kỳ vọng: `{"success":true,"entries":[...]}`.
 
 ## Lưu ý
 
+- **POST qua server Next.js:** Apps Script trả `302` — route `/api/guestbook` dùng `postToGoogleAppsScript` (POST rồi GET URL redirect). Nếu gọi thẳng GAS bằng `curl -L -X POST` có thể báo lỗi giả; test POST qua `http://localhost:3000/api/guestbook` hoặc POST + GET `location` như trong code.
 - Cột **signatureDataUrl** là ảnh chữ ký dạng base64 — có thể dài. Google Sheet giới hạn ~50.000 ký tự/ô; chữ ký quá phức tạp có thể không lưu được (khách nên ký gọn).
 - **Không commit** URL script hoặc Sheet vào git công khai nếu không muốn lộ.
 - Production: thêm `GUESTBOOK_API_URL` trên Vercel/hosting giống RSVP.

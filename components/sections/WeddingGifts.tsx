@@ -114,31 +114,32 @@ export function WeddingGifts() {
             initial={{ opacity: 0 }}
             animate={{ opacity: 1 }}
             exit={{ opacity: 0 }}
-            className="fixed inset-0 z-50 flex items-center justify-center bg-charcoal/85 p-4"
+            transition={{ duration: 0.2 }}
+            className="fixed inset-0 z-50 flex items-center justify-center bg-charcoal/85 p-4 backdrop-blur-sm"
             role="dialog"
             aria-modal="true"
             aria-label={content.gifts.dialogTitle}
             onClick={close}
           >
-            <button
-              ref={closeRef}
-              type="button"
-              onClick={close}
-              className="absolute top-4 right-4 flex h-10 w-10 items-center justify-center rounded-full bg-white/10 text-white hover:bg-white/20"
-              aria-label={content.gifts.close}
-            >
-              <svg className="h-6 w-6" fill="none" viewBox="0 0 24 24" stroke="currentColor" aria-hidden="true">
-                <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={1.5} d="M6 18L18 6M6 6l12 12" />
-              </svg>
-            </button>
-
             <motion.div
-              initial={shouldReduceMotion ? false : { opacity: 0, y: 20 }}
-              animate={{ opacity: 1, y: 0 }}
-              exit={{ opacity: 0, y: 12 }}
-              className="max-h-[90vh] w-full max-w-3xl overflow-y-auto rounded-sm bg-ivory p-6 md:p-8"
+              initial={shouldReduceMotion ? false : { opacity: 0, scale: 0.92 }}
+              animate={{ opacity: 1, scale: 1 }}
+              exit={{ opacity: 0, scale: 0.94 }}
+              transition={{ duration: 0.28, ease: [0.22, 1, 0.36, 1] }}
+              className="relative max-h-[min(90vh,720px)] w-full max-w-3xl overflow-y-auto rounded-sm bg-ivory p-6 shadow-2xl md:p-8"
               onClick={(e) => e.stopPropagation()}
             >
+              <button
+                ref={closeRef}
+                type="button"
+                onClick={close}
+                className="absolute top-3 right-3 z-10 flex h-10 w-10 items-center justify-center rounded-full bg-charcoal/8 text-charcoal transition hover:bg-charcoal/12"
+                aria-label={content.gifts.close}
+              >
+                <svg className="h-6 w-6" fill="none" viewBox="0 0 24 24" stroke="currentColor" aria-hidden="true">
+                  <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={1.5} d="M6 18L18 6M6 6l12 12" />
+                </svg>
+              </button>
               <h3 className="text-center font-serif text-2xl text-charcoal">
                 {content.gifts.dialogTitle}
               </h3>

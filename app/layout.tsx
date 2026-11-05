@@ -1,6 +1,7 @@
 import type { Metadata } from "next";
 import { Cormorant_Garamond, Great_Vibes, Lato } from "next/font/google";
 import { weddingData } from "@/data/wedding";
+import { coupleShortLine } from "@/lib/couple-names";
 import { content } from "@/data/content";
 import { formatDate } from "@/lib/utils";
 import { ToastProvider } from "@/components/ui/ToastProvider";
@@ -33,7 +34,7 @@ const greatVibes = Great_Vibes({
   display: "swap",
 });
 
-const coupleName = `${weddingData.couple.groom} & ${weddingData.couple.bride}`;
+const coupleName = coupleShortLine();
 const weddingDate = formatDate(weddingData.weddingDate);
 
 export const metadata: Metadata = {

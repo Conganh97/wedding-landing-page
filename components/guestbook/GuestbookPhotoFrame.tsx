@@ -15,7 +15,6 @@ type GuestbookPhotoFrameProps = {
     dataUrl: string;
     x: number;
     y: number;
-    message: string;
   } | null;
   placementMode: boolean;
   onPlacementMove: (x: number, y: number) => void;
@@ -109,11 +108,6 @@ export function GuestbookPhotoFrame({
                   sizes="128px"
                 />
               </div>
-              {placementPreview.message && (
-                <p className="mt-1 max-w-[140px] rounded-sm bg-white/92 px-2 py-0.5 text-[10px] text-charcoal shadow">
-                  {placementPreview.message}
-                </p>
-              )}
             </div>
           )}
 

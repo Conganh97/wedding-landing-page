@@ -1,5 +1,6 @@
 "use client";
 
+import Image from "next/image";
 import { familyData } from "@/data/family";
 import { weddingData } from "@/data/wedding";
 import { content } from "@/data/content";
@@ -25,8 +26,35 @@ function FamilySideCard({
   );
 }
 
+function CoupleSidePortrait({
+  src,
+  alt,
+  roleLabel,
+  name,
+}: {
+  src: string;
+  alt: string;
+  roleLabel: string;
+  name: string;
+}) {
+  return (
+    <div className="flex flex-col items-center">
+      <p className="text-[10px] tracking-[0.28em] text-charcoal-light uppercase md:text-xs">
+        {roleLabel}
+      </p>
+      <div className="relative mt-2 aspect-[3/4] w-[120px] overflow-hidden rounded-sm border-2 border-champagne/45 bg-pearl p-1 shadow-md md:w-[140px]">
+        <div className="relative h-full w-full overflow-hidden rounded-[2px]">
+          <Image src={src} alt={alt} fill className="object-cover" sizes="140px" />
+        </div>
+      </div>
+      <p className="mt-3 font-serif text-lg text-charcoal md:text-xl">{name}</p>
+    </div>
+  );
+}
+
 export function FamilyInfo() {
   const headingId = "family-heading";
+  const { groomShort: groom, brideShort: bride } = weddingData.couple;
 
   return (
     <section
@@ -49,6 +77,30 @@ export function FamilyInfo() {
           </p>
         </Reveal>
 
+        <Reveal delay={0.06} className="mb-10 md:mb-12">
+          <div className="gold-divider mx-auto mb-8 w-24" />
+          <div className="flex items-end justify-center gap-4 md:gap-10">
+            <CoupleSidePortrait
+              src={familyData.groomPortrait.src}
+              alt={familyData.groomPortrait.alt}
+              roleLabel={content.invitation.groomRole}
+              name={groom}
+            />
+            <span
+              className="pb-16 font-serif text-2xl text-champagne md:pb-20 md:text-3xl"
+              aria-hidden="true"
+            >
+              &
+            </span>
+            <CoupleSidePortrait
+              src={familyData.bridePortrait.src}
+              alt={familyData.bridePortrait.alt}
+              roleLabel={content.invitation.brideRole}
+              name={bride}
+            />
+          </div>
+        </Reveal>
+
         <div className="mx-auto grid max-w-3xl gap-8 md:grid-cols-2">
           <Reveal delay={0.08} direction="left">
             <FamilySideCard side={familyData.groomSide} />
@@ -57,22 +109,6 @@ export function FamilyInfo() {
             <FamilySideCard side={familyData.brideSide} />
           </Reveal>
         </div>
-
-        <Reveal delay={0.12} className="mt-10 text-center">
-          <div className="gold-divider mx-auto mb-6 w-24" />
-          <p className="text-xs tracking-[0.25em] text-champagne uppercase">
-            {content.invitation.groomRole}
-          </p>
-          <p className="font-serif text-2xl text-charcoal">
-            {weddingData.couple.groom}
-          </p>
-          <p className="mt-4 text-xs tracking-[0.25em] text-champagne uppercase">
-            {content.invitation.brideRole}
-          </p>
-          <p className="font-serif text-2xl text-charcoal">
-            {weddingData.couple.bride}
-          </p>
-        </Reveal>
       </Container>
     </section>
   );

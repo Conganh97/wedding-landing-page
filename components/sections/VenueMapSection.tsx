@@ -12,7 +12,12 @@ import { SectionHeading } from "@/components/ui/SectionHeading";
 import { Reveal } from "@/components/ui/Reveal";
 import { GoogleMapEmbed } from "@/components/ui/GoogleMapEmbed";
 
-export function VenueMapSection() {
+type VenueMapSectionProps = {
+  /** Ngay dưới thông tin sự kiện — bớt khoảng trống phía trên */
+  compactTop?: boolean;
+};
+
+export function VenueMapSection({ compactTop = false }: VenueMapSectionProps) {
   const headingId = "venue-map-heading";
   const mapQuery = getMapSearchQuery(
     primaryVenue.venue,
@@ -24,7 +29,7 @@ export function VenueMapSection() {
   return (
     <section
       id={SECTION_IDS.venue}
-      className="section-shell section-events section-divider py-10 md:py-14"
+      className={`section-shell section-events ${compactTop ? "pb-10 pt-4 md:pb-14 md:pt-6" : "section-divider py-10 md:py-14"}`}
       aria-labelledby={headingId}
     >
       <Container>
