@@ -10,6 +10,7 @@ import { SECTION_IDS } from "@/lib/constants";
 import { Container } from "@/components/ui/Container";
 import { SectionHeading } from "@/components/ui/SectionHeading";
 import { Reveal } from "@/components/ui/Reveal";
+import { PhotoFrame } from "@/components/ui/PhotoFrame";
 
 export function Gallery() {
   const [index, setIndex] = useState(0);
@@ -73,7 +74,7 @@ export function Gallery() {
         </Reveal>
 
         <Reveal delay={0.08} className="mx-auto max-w-3xl">
-          <div className="relative overflow-hidden rounded-md border border-champagne/25 bg-pearl shadow-md">
+          <PhotoFrame className="w-full" innerClassName="relative overflow-hidden">
             <button
               type="button"
               onClick={() => go(-1)}
@@ -116,7 +117,7 @@ export function Gallery() {
                 </p>
               </div>
             </motion.button>
-          </div>
+          </PhotoFrame>
 
           <div className="mt-4 flex flex-wrap justify-center gap-2">
             {galleryData.map((img, i) => (

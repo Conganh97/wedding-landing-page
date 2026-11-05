@@ -9,6 +9,7 @@ import { SECTION_IDS } from "@/lib/constants";
 import { Container } from "@/components/ui/Container";
 import { SectionHeading } from "@/components/ui/SectionHeading";
 import { Reveal } from "@/components/ui/Reveal";
+import { PhotoFrame } from "@/components/ui/PhotoFrame";
 import type { GiftPerson } from "@/types";
 
 function GiftPersonPanel({ person }: { person: GiftPerson }) {
@@ -84,27 +85,29 @@ export function WeddingGifts() {
         </Reveal>
 
         <Reveal delay={0.08} className="mx-auto max-w-lg">
-          <button
-            type="button"
-            onClick={() => setOpen(true)}
-            className="group relative mx-auto block w-full overflow-hidden rounded-md border border-champagne/35 bg-pearl shadow-[0_12px_40px_rgba(74,68,60,0.12)] transition hover:shadow-[0_16px_48px_rgba(74,68,60,0.16)] focus:outline-none"
-            aria-haspopup="dialog"
-            aria-expanded={open}
-          >
-            <div className="relative aspect-[16/10] w-full">
-              <Image
-                src={giftData.cardImageSrc}
-                alt={giftData.cardImageAlt}
-                fill
-                className="object-cover transition duration-500 group-hover:scale-[1.02]"
-                sizes="(max-width: 768px) 90vw, 512px"
-              />
-              <div className="absolute inset-0 bg-linear-to-t from-charcoal/50 via-transparent to-transparent" />
-              <p className="absolute right-0 bottom-0 left-0 pb-4 text-center text-sm tracking-wide text-white">
-                {giftData.cardHint}
-              </p>
-            </div>
-          </button>
+          <PhotoFrame tilt className="w-full">
+            <button
+              type="button"
+              onClick={() => setOpen(true)}
+              className="group relative block w-full overflow-hidden rounded-[2px] focus:outline-none"
+              aria-haspopup="dialog"
+              aria-expanded={open}
+            >
+              <div className="relative aspect-[16/10] w-full">
+                <Image
+                  src={giftData.cardImageSrc}
+                  alt={giftData.cardImageAlt}
+                  fill
+                  className="object-cover transition duration-500 group-hover:scale-[1.02]"
+                  sizes="(max-width: 768px) 90vw, 512px"
+                />
+                <div className="absolute inset-0 bg-linear-to-t from-charcoal/50 via-transparent to-transparent" />
+                <p className="absolute right-0 bottom-0 left-0 pb-4 text-center text-sm tracking-wide text-white">
+                  {giftData.cardHint}
+                </p>
+              </div>
+            </button>
+          </PhotoFrame>
         </Reveal>
       </Container>
 

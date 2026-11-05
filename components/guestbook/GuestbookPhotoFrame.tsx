@@ -54,11 +54,15 @@ export function GuestbookPhotoFrame({
   const pinsOnBoard = entries.slice(0, guestbookBoard.maxPins);
 
   return (
-    <div className="guestbook-frame-outer mx-auto max-w-md rotate-1 md:max-w-lg">
-      <div className="guestbook-frame-border rounded-sm p-2 md:p-3">
+    <div className="guestbook-frame-outer mx-auto max-w-md md:max-w-lg">
+      <div className="guestbook-frame-border photo-frame-ornate photo-frame-ornate--tilt rounded-sm">
+        <span className="photo-frame-corner photo-frame-corner-tl" aria-hidden="true" />
+        <span className="photo-frame-corner photo-frame-corner-tr" aria-hidden="true" />
+        <span className="photo-frame-corner photo-frame-corner-bl" aria-hidden="true" />
+        <span className="photo-frame-corner photo-frame-corner-br" aria-hidden="true" />
         <div
           ref={boardRef}
-          className={`relative aspect-[3/4] overflow-hidden rounded-[2px] ${placementMode ? "cursor-crosshair" : ""}`}
+          className={`photo-frame-inner relative aspect-[3/4] rounded-[2px] ${placementMode ? "cursor-crosshair" : ""}`}
           onPointerDown={(e) => {
             if (!placementMode) return;
             setDragging(true);

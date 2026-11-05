@@ -54,6 +54,36 @@ body {
   font-family: var(--font-lato), system-ui, sans-serif;
 }
 
+/* Nền trang — texture giấy + ánh champagne (không phẳng một màu) */
+.main-luxury-surface {
+  background-color: var(--color-pearl);
+  background-image:
+    url("data:image/svg+xml,%3Csvg viewBox='0 0 256 256' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.9' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)' opacity='0.04'/%3E%3C/svg%3E"),
+    radial-gradient(
+      ellipse 120% 80% at 10% -20%,
+      rgba(201, 169, 110, 0.14),
+      transparent 55%
+    ),
+    radial-gradient(
+      ellipse 90% 70% at 95% 10%,
+      rgba(232, 213, 208, 0.35),
+      transparent 50%
+    ),
+    radial-gradient(
+      ellipse 80% 60% at 50% 100%,
+      rgba(201, 169, 110, 0.1),
+      transparent 55%
+    ),
+    linear-gradient(
+      175deg,
+      var(--color-ivory) 0%,
+      var(--color-pearl) 35%,
+      var(--color-linen) 70%,
+      var(--color-cream) 100%
+    );
+  background-attachment: fixed;
+}
+
 *:focus-visible {
   outline: 2px solid var(--color-champagne);
   outline-offset: 2px;
@@ -117,27 +147,43 @@ body {
   }
 }
 
-.guestbook-section {
+.guestbook-section::after {
   background:
     radial-gradient(
-      ellipse 80% 50% at 20% 0%,
-      rgba(201, 169, 110, 0.12),
-      transparent 55%
+      ellipse 70% 50% at 25% 0%,
+      rgba(201, 169, 110, 0.2),
+      transparent 60%
     ),
-    linear-gradient(180deg, #e8ebe4 0%, var(--color-linen) 45%, var(--color-pearl) 100%);
+    radial-gradient(
+      ellipse 50% 40% at 90% 80%,
+      rgba(232, 235, 228, 0.9),
+      transparent 65%
+    ),
+    linear-gradient(
+      180deg,
+      rgba(232, 235, 228, 0.75) 0%,
+      rgba(230, 221, 208, 0.85) 50%,
+      rgba(247, 242, 235, 0.9) 100%
+    );
 }
 
 .guestbook-frame-outer {
-  filter: drop-shadow(0 16px 40px rgba(44, 40, 36, 0.2));
+  filter: drop-shadow(0 20px 48px rgba(44, 40, 36, 0.18));
 }
 
 .guestbook-frame-border {
-  border: 2px solid rgba(201, 169, 110, 0.45);
+  position: relative;
+  padding: 0.65rem;
+  border: 1px solid rgba(201, 169, 110, 0.4);
   background: linear-gradient(
-    145deg,
-    rgba(255, 253, 249, 0.95) 0%,
-    rgba(232, 221, 208, 0.9) 100%
+    155deg,
+    rgba(255, 253, 249, 0.98) 0%,
+    rgba(232, 221, 208, 0.92) 100%
   );
+  box-shadow:
+    0 0 0 4px rgba(255, 253, 249, 0.35),
+    0 0 0 5px rgba(201, 169, 110, 0.12),
+    inset 0 1px 0 rgba(255, 255, 255, 0.6);
 }
 
 .guestbook-glass {
@@ -190,61 +236,96 @@ body {
   inset: 0;
   z-index: 0;
   pointer-events: none;
+  opacity: 0.92;
+  background-image: url("data:image/svg+xml,%3Csvg width='60' height='60' viewBox='0 0 60 60' xmlns='http://www.w3.org/2000/svg'%3E%3Cpath d='M30 0L30 60M0 30L60 30' stroke='%23c9a96e' stroke-width='0.35' opacity='0.07'/%3E%3C/svg%3E");
+  background-size: 60px 60px;
+  mask-image: linear-gradient(to bottom, black, black 85%, transparent);
 }
 
-.section-story::before {
+.section-shell::after {
+  content: "";
+  position: absolute;
+  inset: 0;
+  z-index: 0;
+  pointer-events: none;
+  opacity: 0.55;
+}
+
+.section-story::after {
   background:
     radial-gradient(
-      ellipse 90% 60% at 50% -10%,
-      rgba(201, 169, 110, 0.14),
-      transparent 70%
+      ellipse 90% 55% at 50% -5%,
+      rgba(201, 169, 110, 0.2),
+      transparent 65%
     ),
     radial-gradient(
-      ellipse 50% 40% at 100% 80%,
-      rgba(232, 213, 208, 0.2),
+      ellipse 45% 35% at 100% 85%,
+      rgba(232, 213, 208, 0.35),
       transparent 70%
     ),
     linear-gradient(
       180deg,
-      var(--color-linen) 0%,
-      var(--color-cream) 45%,
-      var(--color-pearl) 100%
+      rgba(250, 248, 245, 0.85) 0%,
+      rgba(240, 232, 220, 0.75) 50%,
+      rgba(247, 242, 235, 0.9) 100%
     );
 }
 
-.section-gallery::before {
+.section-gallery::after {
   background:
     radial-gradient(
-      ellipse 60% 50% at 0% 40%,
-      rgba(201, 169, 110, 0.1),
-      transparent 70%
+      ellipse 55% 45% at 0% 35%,
+      rgba(201, 169, 110, 0.16),
+      transparent 68%
     ),
     radial-gradient(
-      ellipse 50% 40% at 100% 60%,
-      rgba(212, 184, 176, 0.15),
+      ellipse 50% 40% at 100% 55%,
+      rgba(212, 184, 176, 0.28),
       transparent 70%
     ),
-    linear-gradient(180deg, var(--color-pearl) 0%, var(--color-blush) 100%);
+    linear-gradient(
+      180deg,
+      rgba(247, 242, 235, 0.88) 0%,
+      rgba(226, 214, 202, 0.82) 100%
+    );
 }
 
-.section-events::before {
+.section-events::after {
   background:
     radial-gradient(
-      ellipse 80% 50% at 50% 100%,
-      rgba(201, 169, 110, 0.12),
+      ellipse 75% 45% at 50% 105%,
+      rgba(201, 169, 110, 0.18),
+      transparent 68%
+    ),
+    radial-gradient(
+      ellipse 40% 30% at 15% 20%,
+      rgba(255, 253, 249, 0.5),
       transparent 70%
     ),
-    linear-gradient(180deg, var(--color-blush) 0%, var(--color-linen) 100%);
+    linear-gradient(
+      180deg,
+      rgba(226, 214, 202, 0.8) 0%,
+      rgba(230, 221, 208, 0.85) 100%
+    );
 }
 
-.section-rsvp::before {
+.section-rsvp::after {
   background:
     radial-gradient(
-      ellipse 70% 50% at 50% 0%,
-      rgba(201, 169, 110, 0.15),
-      transparent 70%
+      ellipse 70% 45% at 50% -5%,
+      rgba(201, 169, 110, 0.22),
+      transparent 68%
     ),
-    linear-gradient(180deg, var(--color-linen) 0%, var(--color-warm-stone) 100%);
+    radial-gradient(
+      ellipse 60% 50% at 80% 100%,
+      rgba(212, 200, 184, 0.35),
+      transparent 65%
+    ),
+    linear-gradient(
+      180deg,
+      rgba(230, 221, 208, 0.82) 0%,
+      rgba(212, 200, 184, 0.88) 100%
+    );
 }
 
 .section-divider::after {
@@ -265,12 +346,79 @@ body {
 }
 
 .card-elegant {
-  border: 1px solid rgba(201, 169, 110, 0.28);
-  background: rgba(255, 253, 249, 0.72);
+  border: 1px solid rgba(201, 169, 110, 0.32);
+  background:
+    linear-gradient(
+      145deg,
+      rgba(255, 253, 249, 0.92) 0%,
+      rgba(247, 242, 235, 0.78) 100%
+    );
   box-shadow:
-    0 1px 2px rgba(74, 68, 60, 0.04),
-    0 8px 32px rgba(74, 68, 60, 0.07);
-  backdrop-filter: blur(10px);
+    0 1px 0 rgba(255, 255, 255, 0.65) inset,
+    0 1px 2px rgba(74, 68, 60, 0.05),
+    0 12px 36px rgba(74, 68, 60, 0.08);
+  backdrop-filter: blur(12px);
+}
+
+.photo-frame-ornate {
+  position: relative;
+  padding: 0.65rem;
+  background: linear-gradient(
+    155deg,
+    #fffef9 0%,
+    #f3ebe0 45%,
+    #e8ddd0 100%
+  );
+  box-shadow:
+    0 0 0 1px rgba(201, 169, 110, 0.35),
+    0 0 0 5px rgba(255, 253, 249, 0.45),
+    0 0 0 6px rgba(201, 169, 110, 0.15),
+    0 16px 44px rgba(44, 40, 36, 0.14);
+}
+
+.photo-frame-ornate--tilt {
+  transform: rotate(-1.25deg);
+}
+
+.photo-frame-inner {
+  position: relative;
+  overflow: hidden;
+  background: var(--color-charcoal);
+  box-shadow: inset 0 0 0 1px rgba(201, 169, 110, 0.25);
+}
+
+.photo-frame-corner {
+  position: absolute;
+  z-index: 2;
+  width: 18px;
+  height: 18px;
+  border-color: rgba(201, 169, 110, 0.75);
+  border-style: solid;
+  pointer-events: none;
+}
+
+.photo-frame-corner-tl {
+  top: 10px;
+  left: 10px;
+  border-width: 2px 0 0 2px;
+}
+
+.photo-frame-corner-tr {
+  top: 10px;
+  right: 10px;
+  border-width: 2px 2px 0 0;
+}
+
+.photo-frame-corner-bl {
+  bottom: 10px;
+  left: 10px;
+  border-width: 0 0 2px 2px;
+}
+
+.photo-frame-corner-br {
+  bottom: 10px;
+  right: 10px;
+  border-width: 0 2px 2px 0;
 }
 
 .footer-elegant {

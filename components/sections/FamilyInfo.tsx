@@ -8,6 +8,7 @@ import { SECTION_IDS } from "@/lib/constants";
 import { Container } from "@/components/ui/Container";
 import { SectionHeading } from "@/components/ui/SectionHeading";
 import { Reveal } from "@/components/ui/Reveal";
+import { PhotoFrame } from "@/components/ui/PhotoFrame";
 
 function FamilySideCard({
   side,
@@ -42,11 +43,12 @@ function CoupleSidePortrait({
       <p className="text-[10px] tracking-[0.28em] text-charcoal-light uppercase md:text-xs">
         {roleLabel}
       </p>
-      <div className="relative mt-2 aspect-[3/4] w-[120px] overflow-hidden rounded-sm border-2 border-champagne/45 bg-pearl p-1 shadow-md md:w-[140px]">
-        <div className="relative h-full w-full overflow-hidden rounded-[2px]">
-          <Image src={src} alt={alt} fill className="object-cover" sizes="140px" />
-        </div>
-      </div>
+      <PhotoFrame
+        className="mt-2 aspect-[3/4] w-[120px] md:w-[140px]"
+        innerClassName="relative h-full w-full"
+      >
+        <Image src={src} alt={alt} fill className="object-cover" sizes="140px" />
+      </PhotoFrame>
       <p className="mt-3 font-serif text-lg text-charcoal md:text-xl">{name}</p>
     </div>
   );

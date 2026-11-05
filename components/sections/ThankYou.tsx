@@ -7,6 +7,7 @@ import { content } from "@/data/content";
 import { SECTION_IDS } from "@/lib/constants";
 import { Container } from "@/components/ui/Container";
 import { Reveal } from "@/components/ui/Reveal";
+import { PhotoFrame } from "@/components/ui/PhotoFrame";
 
 export function ThankYou() {
   const { groomShort: groom, brideShort: bride } = weddingData.couple;
@@ -27,7 +28,11 @@ export function ThankYou() {
             {content.thanks.message}
           </p>
 
-          <div className="relative mx-auto mt-8 aspect-[16/10] w-full max-w-lg overflow-hidden rounded-md border border-champagne/30 shadow-md">
+          <PhotoFrame
+            tilt
+            className="mx-auto mt-8 aspect-[16/10] w-full max-w-lg"
+            innerClassName="h-full w-full"
+          >
             <Image
               src={thanksData.imageSrc}
               alt={thanksData.imageAlt}
@@ -35,7 +40,7 @@ export function ThankYou() {
               className="object-cover"
               sizes="(max-width: 768px) 90vw, 512px"
             />
-          </div>
+          </PhotoFrame>
 
           <p className="mt-10 font-serif text-2xl tracking-wide text-champagne">
             {groom}

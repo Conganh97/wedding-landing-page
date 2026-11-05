@@ -45,7 +45,7 @@ export function HomePage() {
         {showContent && (
           <>
             <Header />
-            <main id="main-content" className="flex-1 bg-linen">
+            <main id="main-content" className="main-luxury-surface flex-1">
               <Hero />
               <IntroStory />
               <FamilyInfo />
