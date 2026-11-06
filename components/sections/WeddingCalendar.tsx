@@ -57,7 +57,7 @@ export function WeddingCalendar() {
                     !cell.inMonth
                       ? "text-transparent"
                       : cell.isWeddingDay
-                        ? "bg-champagne font-semibold text-white shadow-md"
+                        ? "bg-champagne font-semibold text-ink shadow-md"
                         : "text-charcoal"
                   }`}
                 >

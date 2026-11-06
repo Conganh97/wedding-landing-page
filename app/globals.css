@@ -1,43 +1,46 @@
 @import "tailwindcss";
 
 :root {
-  --color-ivory: #faf8f5;
-  --color-pearl: #f7f2eb;
-  --color-cream: #f0e8dc;
-  --color-linen: #e6ddd0;
-  --color-blush: #e2d6ca;
-  --color-warm-stone: #d4c8b8;
-  --color-champagne: #c9a96e;
-  --color-champagne-dark: #a88b4a;
-  --color-rose: #e8d5d0;
-  --color-rose-dark: #d4b8b0;
-  --color-charcoal: #2c2c2c;
-  --color-charcoal-light: #5a5a5a;
-  --color-mocha: #4a443c;
+  --color-ivory: #0e1430;
+  --color-pearl: #10162c;
+  --color-cream: #141b34;
+  --color-linen: #0b1022;
+  --color-blush: #1a2140;
+  --color-warm-stone: #1c2444;
+  --color-champagne: #d6dcef;
+  --color-champagne-dark: #b7c2ea;
+  --color-rose: #1a2142;
+  --color-rose-dark: #8c97c4;
+  --color-charcoal: #f4f6fd;
+  --color-charcoal-light: #b3bbd6;
+  --color-mocha: #d6dcef;
   --color-white: #fffdf9;
-  --background: var(--color-linen);
-  --foreground: var(--color-charcoal);
-  color-scheme: light;
+  --color-ink: #02030a;
+  --background: #02030a;
+  --foreground: #f4f6fd;
+  color-scheme: dark;
 }
 
 @theme inline {
   --color-background: var(--background);
   --color-foreground: var(--foreground);
-  --color-ivory: #faf8f5;
-  --color-pearl: #f7f2eb;
-  --color-cream: #f0e8dc;
-  --color-linen: #e6ddd0;
-  --color-blush: #e2d6ca;
-  --color-warm-stone: #d4c8b8;
-  --color-champagne: #c9a96e;
-  --color-champagne-dark: #a88b4a;
-  --color-rose: #e8d5d0;
-  --color-rose-dark: #d4b8b0;
-  --color-charcoal: #2c2c2c;
-  --color-charcoal-light: #5a5a5a;
-  --color-mocha: #4a443c;
+  --color-ivory: #0e1430;
+  --color-pearl: #10162c;
+  --color-cream: #141b34;
+  --color-linen: #0b1022;
+  --color-blush: #1a2140;
+  --color-warm-stone: #1c2444;
+  --color-champagne: #d6dcef;
+  --color-champagne-dark: #b7c2ea;
+  --color-rose: #1a2142;
+  --color-rose-dark: #8c97c4;
+  --color-charcoal: #f4f6fd;
+  --color-charcoal-light: #b3bbd6;
+  --color-mocha: #d6dcef;
+  --color-ink: #02030a;
   --font-sans: var(--font-lato);
   --font-serif: var(--font-cormorant);
+  --font-script: var(--font-signature), var(--font-cormorant), cursive;
 }
 
 html {
@@ -45,7 +48,7 @@ html {
 }
 
 html.light {
-  color-scheme: light;
+  color-scheme: dark;
 }
 
 body {
@@ -54,34 +57,8 @@ body {
   font-family: var(--font-lato), system-ui, sans-serif;
 }
 
-/* Nền trang — texture giấy + ánh champagne (không phẳng một màu) */
 .main-luxury-surface {
-  background-color: var(--color-pearl);
-  background-image:
-    url("data:image/svg+xml,%3Csvg viewBox='0 0 256 256' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.9' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)' opacity='0.04'/%3E%3C/svg%3E"),
-    radial-gradient(
-      ellipse 120% 80% at 10% -20%,
-      rgba(201, 169, 110, 0.14),
-      transparent 55%
-    ),
-    radial-gradient(
-      ellipse 90% 70% at 95% 10%,
-      rgba(232, 213, 208, 0.35),
-      transparent 50%
-    ),
-    radial-gradient(
-      ellipse 80% 60% at 50% 100%,
-      rgba(201, 169, 110, 0.1),
-      transparent 55%
-    ),
-    linear-gradient(
-      175deg,
-      var(--color-ivory) 0%,
-      var(--color-pearl) 35%,
-      var(--color-linen) 70%,
-      var(--color-cream) 100%
-    );
-  background-attachment: fixed;
+  background: transparent;
 }
 
 *:focus-visible {
@@ -174,16 +151,11 @@ body {
 .guestbook-frame-border {
   position: relative;
   padding: 0.65rem;
-  border: 1px solid rgba(201, 169, 110, 0.4);
-  background: linear-gradient(
-    155deg,
-    rgba(255, 253, 249, 0.98) 0%,
-    rgba(232, 221, 208, 0.92) 100%
-  );
+  border: 1px solid rgba(214, 223, 255, 0.35);
+  background: rgba(10, 14, 32, 0.72);
   box-shadow:
-    0 0 0 4px rgba(255, 253, 249, 0.35),
-    0 0 0 5px rgba(201, 169, 110, 0.12),
-    inset 0 1px 0 rgba(255, 255, 255, 0.6);
+    0 0 0 4px rgba(8, 12, 28, 0.45),
+    inset 0 1px 0 rgba(255, 255, 255, 0.08);
 }
 
 .guestbook-glass {
@@ -230,102 +202,14 @@ body {
   z-index: 1;
 }
 
-.section-shell::before {
-  content: "";
-  position: absolute;
-  inset: 0;
-  z-index: 0;
-  pointer-events: none;
-  opacity: 0.92;
-  background-image: url("data:image/svg+xml,%3Csvg width='60' height='60' viewBox='0 0 60 60' xmlns='http://www.w3.org/2000/svg'%3E%3Cpath d='M30 0L30 60M0 30L60 30' stroke='%23c9a96e' stroke-width='0.35' opacity='0.07'/%3E%3C/svg%3E");
-  background-size: 60px 60px;
-  mask-image: linear-gradient(to bottom, black, black 85%, transparent);
-}
-
-.section-shell::after {
-  content: "";
-  position: absolute;
-  inset: 0;
-  z-index: 0;
-  pointer-events: none;
-  opacity: 0.55;
-}
-
-.section-story::after {
-  background:
-    radial-gradient(
-      ellipse 90% 55% at 50% -5%,
-      rgba(201, 169, 110, 0.2),
-      transparent 65%
-    ),
-    radial-gradient(
-      ellipse 45% 35% at 100% 85%,
-      rgba(232, 213, 208, 0.35),
-      transparent 70%
-    ),
-    linear-gradient(
-      180deg,
-      rgba(250, 248, 245, 0.85) 0%,
-      rgba(240, 232, 220, 0.75) 50%,
-      rgba(247, 242, 235, 0.9) 100%
-    );
-}
-
-.section-gallery::after {
-  background:
-    radial-gradient(
-      ellipse 55% 45% at 0% 35%,
-      rgba(201, 169, 110, 0.16),
-      transparent 68%
-    ),
-    radial-gradient(
-      ellipse 50% 40% at 100% 55%,
-      rgba(212, 184, 176, 0.28),
-      transparent 70%
-    ),
-    linear-gradient(
-      180deg,
-      rgba(247, 242, 235, 0.88) 0%,
-      rgba(226, 214, 202, 0.82) 100%
-    );
-}
-
-.section-events::after {
-  background:
-    radial-gradient(
-      ellipse 75% 45% at 50% 105%,
-      rgba(201, 169, 110, 0.18),
-      transparent 68%
-    ),
-    radial-gradient(
-      ellipse 40% 30% at 15% 20%,
-      rgba(255, 253, 249, 0.5),
-      transparent 70%
-    ),
-    linear-gradient(
-      180deg,
-      rgba(226, 214, 202, 0.8) 0%,
-      rgba(230, 221, 208, 0.85) 100%
-    );
-}
-
-.section-rsvp::after {
-  background:
-    radial-gradient(
-      ellipse 70% 45% at 50% -5%,
-      rgba(201, 169, 110, 0.22),
-      transparent 68%
-    ),
-    radial-gradient(
-      ellipse 60% 50% at 80% 100%,
-      rgba(212, 200, 184, 0.35),
-      transparent 65%
-    ),
-    linear-gradient(
-      180deg,
-      rgba(230, 221, 208, 0.82) 0%,
-      rgba(212, 200, 184, 0.88) 100%
-    );
+.section-shell::before,
+.section-shell::after,
+.section-story::after,
+.section-gallery::after,
+.section-events::after,
+.section-rsvp::after,
+.guestbook-section::after {
+  content: none;
 }
 
 .section-divider::after {
@@ -346,34 +230,21 @@ body {
 }
 
 .card-elegant {
-  border: 1px solid rgba(201, 169, 110, 0.32);
-  background:
-    linear-gradient(
-      145deg,
-      rgba(255, 253, 249, 0.92) 0%,
-      rgba(247, 242, 235, 0.78) 100%
-    );
+  border: 1px solid rgba(214, 223, 255, 0.32);
+  background: rgba(10, 14, 32, 0.58);
   box-shadow:
-    0 1px 0 rgba(255, 255, 255, 0.65) inset,
-    0 1px 2px rgba(74, 68, 60, 0.05),
-    0 12px 36px rgba(74, 68, 60, 0.08);
-  backdrop-filter: blur(12px);
+    0 1px 0 rgba(255, 255, 255, 0.08) inset,
+    0 18px 48px rgba(0, 0, 0, 0.28);
+  backdrop-filter: blur(16px);
 }
 
 .photo-frame-ornate {
   position: relative;
-  padding: 0.65rem;
-  background: linear-gradient(
-    155deg,
-    #fffef9 0%,
-    #f3ebe0 45%,
-    #e8ddd0 100%
-  );
+  padding: 0.45rem;
+  background: rgba(10, 14, 32, 0.72);
   box-shadow:
-    0 0 0 1px rgba(201, 169, 110, 0.35),
-    0 0 0 5px rgba(255, 253, 249, 0.45),
-    0 0 0 6px rgba(201, 169, 110, 0.15),
-    0 16px 44px rgba(44, 40, 36, 0.14);
+    0 0 0 1px rgba(214, 223, 255, 0.35),
+    0 16px 44px rgba(0, 0, 0, 0.35);
 }
 
 .photo-frame-ornate--tilt {
@@ -422,12 +293,7 @@ body {
 }
 
 .footer-elegant {
-  background: linear-gradient(
-    180deg,
-    var(--color-warm-stone) 0%,
-    #c4b8a6 50%,
-    #b0a494 100%
-  );
+  background: transparent;
 }
 
 .invitation-gate-root {

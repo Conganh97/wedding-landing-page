@@ -4,14 +4,15 @@ import { useState } from "react";
 import { motion, useReducedMotion } from "framer-motion";
 import { Header } from "@/components/layout/Header";
 import { Footer } from "@/components/layout/Footer";
+import { Starfield } from "@/components/layout/Starfield";
 import { WeddingAudio } from "@/components/layout/WeddingAudio";
 import { InvitationGate } from "@/components/invitation/InvitationGate";
 import { Hero } from "@/components/sections/Hero";
-import { IntroStory } from "@/components/sections/IntroStory";
 import { FormalInvitation } from "@/components/sections/FormalInvitation";
 import { FamilyInfo } from "@/components/sections/FamilyInfo";
 import { EventInfo } from "@/components/sections/EventInfo";
 import { WeddingCalendar } from "@/components/sections/WeddingCalendar";
+import { CountdownSection } from "@/components/sections/CountdownSection";
 import { WeddingSchedule } from "@/components/sections/WeddingSchedule";
 import { VenueMapSection } from "@/components/sections/VenueMapSection";
 import { Gallery } from "@/components/sections/Gallery";
@@ -28,6 +29,7 @@ export function HomePage() {
 
   return (
     <>
+      <Starfield />
       {invitationOpen && (
         <InvitationGate onOpen={() => setInvitationOpen(false)} />
       )}
@@ -39,7 +41,7 @@ export function HomePage() {
           duration: shouldReduceMotion ? 0 : 0.6,
           ease: [0.22, 1, 0.36, 1],
         }}
-        className={`flex min-h-full flex-1 flex-col ${showContent ? "" : "pointer-events-none"}`}
+        className={`relative z-10 flex min-h-full flex-1 flex-col ${showContent ? "" : "pointer-events-none"}`}
         aria-hidden={!showContent}
       >
         {showContent && (
@@ -47,13 +49,13 @@ export function HomePage() {
             <Header />
             <main id="main-content" className="main-luxury-surface flex-1">
               <Hero />
-              <IntroStory />
               <FamilyInfo />
               <FormalInvitation />
               <EventInfo />
-              <VenueMapSection compactTop />
               <WeddingCalendar />
+              <CountdownSection />
               <WeddingSchedule />
+              <VenueMapSection compactTop />
               <Gallery />
               <BlessingGuestbook />
               <RsvpForm />

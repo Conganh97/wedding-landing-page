@@ -88,7 +88,7 @@ export function EventInfo() {
           />
         </Reveal>
 
-        <div className="grid gap-8 md:grid-cols-2">
+        <div className="grid gap-4">
           {eventsData.map((event, index) => {
             return (
               <Reveal key={event.id} delay={index * 0.12}>

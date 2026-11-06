@@ -9,6 +9,6 @@
   <rect x="24" y="24" width="352" height="472" fill="none" stroke="#c9a96e" stroke-width="2"/>
   <circle cx="200" cy="200" r="72" fill="#d4c8b8"/>
   <path fill="#b0a494" d="M128 320c24-48 48-72 72-72s48 24 72 72v120H128V320z"/>
-  <text x="200" y="480" text-anchor="middle" fill="#5a5a5a" font-family="Georgia, serif" font-size="18">¢nh chú rÃ</text>
+  <text x="200" y="480" text-anchor="middle" fill="#5a5a5a" font-family="Georgia, serif" font-size="18">Ch&#250; r&#7875;</text>
   <text x="200" y="502" text-anchor="middle" fill="#c9a96e" font-family="sans-serif" font-size="12">public/images/family/groom-portrait.jpg</text>
 </svg>

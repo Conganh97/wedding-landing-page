@@ -42,18 +42,18 @@ export function Header() {
         isScrolled
           ? "border-b border-champagne/15 bg-pearl/90 shadow-sm backdrop-blur-md"
           : isOpen
-            ? "border-b border-white/10 bg-charcoal/50 backdrop-blur-md"
+            ? "border-b border-white/10 bg-ink/70 backdrop-blur-md"
             : "bg-transparent",
       )}
     >
       <a
         href="#main-content"
-        className="sr-only focus:not-sr-only focus:absolute focus:top-2 focus:left-2 focus:z-50 focus:rounded-sm focus:bg-champagne focus:px-4 focus:py-2 focus:text-white"
+        className="sr-only focus:not-sr-only focus:absolute focus:top-2 focus:left-2 focus:z-50 focus:rounded-sm focus:bg-champagne focus:px-4 focus:py-2 focus:text-ink"
       >
         {content.header.skipToContent}
       </a>
 
-      <div className="mx-auto flex max-w-6xl items-center justify-between px-4 py-4 sm:px-6 lg:px-8">
+      <div className="mx-auto flex max-w-[430px] items-center justify-between px-5 py-4">
         <a
           href="#home"
           className={cn(
@@ -67,7 +67,7 @@ export function Header() {
         </a>
 
         <nav
-          className="hidden items-center gap-8 md:flex"
+          className="hidden"
           aria-label={content.header.mainNav}
         >
           {NAV_LINKS.map((link) => (
@@ -88,7 +88,7 @@ export function Header() {
 
         <button
           type="button"
-          className="flex h-10 w-10 items-center justify-center rounded-sm md:hidden"
+          className="flex h-10 w-10 items-center justify-center rounded-sm"
           aria-label={isOpen ? content.header.closeMenu : content.header.openMenu}
           aria-expanded={isOpen}
           aria-controls="mobile-menu"
@@ -129,10 +129,7 @@ export function Header() {
       <nav
         id="mobile-menu"
         className={cn(
-          "border-t md:hidden",
-          onHero
-            ? "border-white/15 bg-charcoal/85 backdrop-blur-md"
-            : "border-champagne/20 bg-linen/95",
+          "border-t border-champagne/20 bg-[#070b1c]",
           isOpen ? "block" : "hidden",
         )}
         aria-label={content.header.mobileNav}

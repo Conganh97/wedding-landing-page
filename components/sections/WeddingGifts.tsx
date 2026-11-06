@@ -14,7 +14,7 @@ import type { GiftPerson } from "@/types";
 
 function GiftPersonPanel({ person }: { person: GiftPerson }) {
   return (
-    <article className="flex flex-col items-center gap-4 rounded-sm border border-champagne/25 bg-white/60 p-5">
+    <article className="card-elegant flex flex-col items-center gap-4 rounded-sm p-5">
       <p className="text-xs tracking-[0.25em] text-champagne uppercase">
         {person.roleLabel}
       </p>
@@ -118,7 +118,7 @@ export function WeddingGifts() {
             animate={{ opacity: 1 }}
             exit={{ opacity: 0 }}
             transition={{ duration: 0.2 }}
-            className="fixed inset-0 z-50 flex items-center justify-center bg-charcoal/85 p-4 backdrop-blur-sm"
+            className="fixed inset-0 z-50 flex items-center justify-center bg-ink/85 p-4 backdrop-blur-sm"
             role="dialog"
             aria-modal="true"
             aria-label={content.gifts.dialogTitle}

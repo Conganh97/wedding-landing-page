@@ -21,7 +21,7 @@ export function ThankYou() {
       <Container>
         <Reveal className="mx-auto max-w-2xl text-center">
           <div className="gold-divider mx-auto mb-6" />
-          <h2 className="font-serif text-3xl text-charcoal md:text-4xl">
+          <h2 className="font-script text-6xl text-charcoal">
             {content.thanks.title}
           </h2>
           <p className="mt-6 text-base leading-relaxed text-charcoal-light md:text-lg">

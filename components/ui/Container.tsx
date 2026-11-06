@@ -20,7 +20,7 @@ export function Container({
     <Component
       id={id}
       aria-labelledby={ariaLabelledby}
-      className={cn("mx-auto w-full max-w-6xl px-4 sm:px-6 lg:px-8", className)}
+      className={cn("mx-auto w-full max-w-[430px] px-5", className)}
     >
       {children}
     </Component>

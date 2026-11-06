@@ -11,6 +11,6 @@
   <circle cx="580" cy="380" r="100" fill="#e2d6ca"/>
   <path fill="#b0a494" d="M250 520c40-60 80-90 70-90s30 30 70 90v280H250V520z"/>
   <path fill="#d4b8b0" d="M510 520c40-60 80-90 70-90s30 30 70 90v280H510V520z"/>
-  <text x="450" y="920" text-anchor="middle" fill="#5a5a5a" font-family="Georgia, serif" font-size="28">¢nh cô dâu &amp; chú rÃ</text>
+  <text x="450" y="920" text-anchor="middle" fill="#5a5a5a" font-family="Georgia, serif" font-size="28">&#7842;nh c&#244; d&#226;u &amp; ch&#250; r&#7875;</text>
   <text x="450" y="960" text-anchor="middle" fill="#c9a96e" font-family="sans-serif" font-size="16">public/images/guestbook/couple-board.jpg</text>
 </svg>

@@ -1,0 +1,486 @@
+.tmx-anh-trong .ladi-image-background[style*="background-image"] {
+  background-size: cover !important;
+  background-position: center !important;
+  background-repeat: no-repeat !important;
+}
+
+.tmx-qr .tmx-anh-trong .ladi-image-background[style*="background-image"] {
+  background-size: contain !important;
+  background-color: #fff;
+}
+
+:root {
+  --f-script: var(--font-signature), "Great Vibes", cursive;
+  --f-than: var(--font-cormorant), "Times New Roman", serif;
+}
+
+/* Màn rộng: cột mẫu 460px nhìn bé. Nới cột và mọi khung ảnh, chữ cùng tỉ lệ. */
+@media (min-width: 800px) {
+  .ladi-wraper.sr { max-width: 640px; }
+  .sr-man { max-width: 520px; }
+  .sr-ten-cua { font-size: 76px; }
+  .sr-va-cua { font-size: 46px; }
+  .sr-quy-dao { max-width: 400px; }
+  .sr-ket .sr-quy-dao { max-width: 320px; }
+  .sr-quy-dao.bau-duc { max-width: 340px; }
+  .sr-ten { font-size: 72px; }
+  .sr-va { font-size: 40px; }
+  .sr-tieu-de,
+  .sr-tieu-de.sr-mot-dong { font-size: 62px; }
+  .sr-ngay-dau { font-size: 28px; }
+  .sr-cau-dau, .sr-bao-tin, .sr-mo-ta { max-width: 460px; font-size: 22px; }
+  .sr-doi .ten-ben { font-size: 42px; }
+  .sr-thu .khach { font-size: 56px; }
+  .sr-ngay-moi { max-width: 420px; }
+  .sr-ngay-moi .so { font-size: 86px; }
+  .sr-thu .noi-ten { font-size: 66px; }
+  .sr-anh-xn { max-width: 460px; }
+  .sr-khung-ky,
+  .sr #SIG_SR,
+  .sr-khung-form,
+  .sr-cho-dem,
+  .sr-tl,
+  .sr-to-lich { max-width: 540px; }
+  .sr #SIG_SR > .ladi-html-code,
+  .sr-khung-ky .nen-ky { height: 580px; }
+  .edit_countDown { --cd-item-size: 96px; }
+  .wbgv2 { height: 620px; }
+  .wbgv2-stage { height: 540px; }
+  .wbgv2-item {
+    width: 310px;
+    height: 465px;
+    margin-left: -155px;
+  }
+}
+
+body {
+  font-family: var(--font-cormorant), "Times New Roman", serif;
+  background: #02030a;
+  color: #f4f6fd;
+}
+
+html:not(.sr-da-mo) .ladi-wraper.sr {
+  opacity: 0;
+  pointer-events: none;
+}
+
+html:not(.sr-da-mo),
+html:not(.sr-da-mo) body {
+  overflow: hidden;
+}
+
+.edit_countDown[data-cd-style="horizontal"] .ladi-html-code {
+  display: flex;
+  flex-direction: row;
+  justify-content: space-evenly;
+  align-items: center;
+  height: 100%;
+  gap: 4%;
+}
+
+.countdown-item {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  flex: 1;
+}
+
+.edit_countDown[data-cd-item-shape="circle"] .countdown-shape {
+  width: var(--cd-item-size, 74px);
+  height: var(--cd-item-size, 74px);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  border-radius: 50%;
+  background: var(--cd-item-bg, rgba(214, 223, 255, 0.06));
+  border: 1px solid #e8ecff;
+  box-shadow: 0 0 16px rgba(232, 236, 255, 0.35);
+}
+
+.countdown-number {
+  font-family: var(--f-than);
+  font-size: 28px;
+  font-weight: 600;
+  line-height: 1;
+  color: #f4f6fd;
+}
+
+.countdown-label {
+  margin-top: 8px;
+  font-size: 11px;
+  letter-spacing: 0.16em;
+  text-transform: uppercase;
+  color: #b3bbd6;
+}
+
+.countdown-sep {
+  color: #b3bbd6;
+  font-size: 22px;
+  padding-bottom: 18px;
+}
+
+.calendar-header,
+.calendar-body {
+  display: grid;
+  grid-template-columns: repeat(7, 1fr);
+  text-align: center;
+}
+
+.calendar-header div {
+  padding: 8px 0;
+  color: #b3bbd6;
+  font-size: 13px;
+}
+
+.calendar-day {
+  aspect-ratio: 1;
+  display: grid;
+  place-items: center;
+  border-radius: 50%;
+  color: #e6eaf7;
+  background: transparent;
+}
+
+.calendar-day.empty {
+  opacity: 0.35;
+}
+
+.calendar-day.selected {
+  background: #e8ecf8;
+  color: #0b0f1f !important;
+  box-shadow: 0 0 18px rgba(200, 212, 255, 0.8);
+}
+
+.wb-tl {
+  padding: 20px 16px 16px;
+  background: rgba(10, 14, 32, 0.6);
+  backdrop-filter: blur(12px);
+  border-radius: 20px;
+  border: 1px solid rgba(214, 223, 255, 0.45);
+  width: calc(100% - 8px);
+  max-width: 340px;
+  margin: 8px auto;
+}
+
+.wb-tl-row {
+  display: flex;
+  align-items: flex-start;
+}
+
+.wb-tl-time {
+  flex: 0 0 58px;
+  text-align: right;
+  font-size: 14px;
+  font-weight: 700;
+  color: #f4f6fd;
+  padding-top: 13px;
+  padding-right: 10px;
+}
+
+.wb-tl-col {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  flex: 0 0 52px;
+}
+
+.wb-tl-dot {
+  width: 46px;
+  height: 46px;
+  border-radius: 50%;
+  background: #dde3f7;
+  border: 2px solid #dde3f7;
+}
+
+.wb-tl-line {
+  width: 2px;
+  flex: 1;
+  min-height: 22px;
+  margin: 3px 0;
+  background: #b3bbd6;
+}
+
+.wb-tl-lbl {
+  flex: 1;
+  font-size: 15px;
+  color: #f4f6fd;
+  padding-top: 13px;
+  padding-left: 10px;
+}
+
+.wb-form-field {
+  margin-bottom: 14px;
+}
+
+.wb-form-label {
+  display: block;
+  margin-bottom: 6px;
+  font-size: 14px;
+  font-weight: 600;
+  color: #f4f6fd;
+}
+
+.wb-form-input,
+.wb-form-textarea,
+.wb-form-select {
+  width: 100%;
+  padding: 10px 14px;
+  color: #f4f6fd;
+  background: #121a3a;
+  border: 1px solid #8c97c4;
+  border-radius: 12px;
+  font: inherit;
+  outline: none;
+}
+
+.wb-form-textarea {
+  min-height: 96px;
+  resize: vertical;
+}
+
+.wb-opt-group {
+  display: flex;
+  gap: 8px;
+}
+
+.wb-opt-label {
+  flex: 1;
+  text-align: center;
+  padding: 10px 8px;
+  border-radius: 999px;
+  border: 1px solid rgba(214, 223, 255, 0.32);
+  color: #d6dcef;
+  cursor: pointer;
+}
+
+.wb-opt-label.active {
+  background: #e8ecf8;
+  color: #0b0f1f;
+  border-color: #e8ecf8;
+}
+
+.wb-submit-btn,
+.sr-ky-nut {
+  display: inline-flex;
+  width: 100%;
+  justify-content: center;
+  margin-top: 8px;
+  padding: 12px 22px;
+  border: 0;
+  border-radius: 999px;
+  background: #e8ecf8;
+  color: #0b0f1f;
+  font-weight: 700;
+  letter-spacing: 0.12em;
+  text-transform: uppercase;
+  cursor: pointer;
+}
+
+.wbgv2 {
+  position: relative;
+  height: 460px;
+}
+
+.wbgv2-stage {
+  position: relative;
+  height: 400px;
+  perspective: 1100px;
+}
+
+.wbgv2-item {
+  position: absolute;
+  top: 12px;
+  left: 50%;
+  width: 230px;
+  height: 345px;
+  margin-left: -115px;
+  overflow: hidden;
+  border-radius: 10px;
+  box-shadow: 0 18px 40px rgba(0, 0, 0, 0.5);
+  transition: transform 0.55s ease, opacity 0.55s ease;
+}
+
+.wbgv2-item img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+}
+
+.wbgv2-nav {
+  position: absolute;
+  top: 46%;
+  z-index: 3;
+  width: 36px;
+  height: 36px;
+  border: 1px solid rgba(214, 223, 255, 0.55);
+  border-radius: 50%;
+  background: rgba(7, 11, 28, 0.72);
+  color: #f4f6fd;
+  transform: translateY(-50%);
+}
+
+.wbgv2-nav.prev {
+  left: 8px;
+}
+
+.wbgv2-nav.next {
+  right: 8px;
+}
+
+.sr-ky-anh {
+  position: absolute;
+  z-index: 2;
+  width: 28%;
+  pointer-events: none;
+  transform: translate(-50%, -50%);
+  filter: drop-shadow(0 0 6px rgba(255, 255, 255, 0.45));
+}
+
+.nen-ky.sr-dang-dat {
+  cursor: crosshair;
+  touch-action: none;
+}
+
+.sr-khung-ky:has(.nen-ky.sr-dang-dat) #SIG_SR {
+  pointer-events: none;
+  visibility: hidden;
+}
+
+.sr-ky-xem {
+  z-index: 4;
+  outline: 1px dashed rgba(232, 236, 248, 0.85);
+  outline-offset: 4px;
+}
+
+.sr-ky-pad {
+  margin-top: 16px;
+  border-radius: 12px;
+  background: #fff;
+}
+
+.edit_googleMap {
+  height: 300px;
+}
+
+.sr-form-error {
+  margin-top: 4px;
+  color: #ffb4b4;
+  font-size: 13px;
+}
+
+.sr-ky-popup {
+  position: fixed;
+  inset: 0;
+  z-index: 220;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 20px;
+  background: rgba(2, 3, 10, 0.72);
+  backdrop-filter: blur(6px);
+}
+
+.sr-ky-dialog {
+  position: relative;
+  width: min(440px, 100%);
+  max-height: min(88vh, 720px);
+  overflow: auto;
+  padding: 28px 22px 20px;
+  border-radius: 16px;
+  border: 1px solid rgba(214, 223, 255, 0.28);
+  background: linear-gradient(165deg, rgba(20, 28, 64, 0.96), rgba(7, 10, 26, 0.96));
+  box-shadow: 0 24px 60px rgba(0, 0, 0, 0.55);
+  text-align: left;
+  color: #f4f6fd;
+}
+
+.sr-ky-dialog h3 {
+  margin: 0 36px 8px 0;
+  font-family: var(--f-script), "Great Vibes", cursive;
+  font-size: 40px;
+  font-weight: 400;
+  line-height: 1.15;
+  text-align: center;
+}
+
+.sr-ky-goi-y {
+  margin: 0 0 16px;
+  text-align: center;
+  font-style: italic;
+  font-size: 15px;
+  line-height: 1.45;
+  color: #d6dcef;
+}
+
+.sr-ky-dong {
+  position: absolute;
+  top: 12px;
+  right: 12px;
+  width: 36px;
+  height: 36px;
+  border: 1px solid rgba(214, 223, 255, 0.4);
+  border-radius: 50%;
+  background: rgba(255, 255, 255, 0.08);
+  color: #f4f6fd;
+  font-size: 22px;
+  line-height: 1;
+  cursor: pointer;
+}
+
+.sr-ky-dat {
+  position: fixed;
+  z-index: 220;
+  left: 50%;
+  bottom: 18px;
+  width: min(440px, calc(100% - 24px));
+  padding: 14px 16px 16px;
+  border: 1px solid rgba(214, 223, 255, 0.28);
+  border-radius: 16px;
+  background: rgba(7, 10, 26, 0.94);
+  box-shadow: 0 18px 40px rgba(0, 0, 0, 0.45);
+  transform: translateX(-50%);
+  text-align: center;
+  color: #f4f6fd;
+}
+
+.sr-ky-dat p {
+  margin: 0 0 12px;
+  font-style: italic;
+  font-size: 15px;
+  line-height: 1.45;
+  color: #d6dcef;
+}
+
+.sr-ky-dat-nut {
+  display: flex;
+  gap: 8px;
+}
+
+.sr-ky-dat-nut .wb-submit-btn,
+.sr-ky-phu {
+  flex: 1;
+  margin-top: 0;
+}
+
+.sr-ky-phu {
+  padding: 12px 16px;
+  border: 1px solid rgba(214, 223, 255, 0.4);
+  border-radius: 999px;
+  background: transparent;
+  color: #f4f6fd;
+  font-weight: 700;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+  cursor: pointer;
+}
+
+@media (min-width: 800px) {
+  .wbgv2 { height: 620px; }
+  .wbgv2-stage { height: 540px; }
+  .wbgv2-item {
+    width: 310px;
+    height: 465px;
+    margin-left: -155px;
+  }
+  .edit_googleMap { height: 380px; }
+}

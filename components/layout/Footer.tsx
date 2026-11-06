@@ -9,7 +9,7 @@ export function Footer() {
 
   return (
     <footer className="footer-elegant border-t border-champagne/25 py-8">
-      <div className="mx-auto max-w-6xl px-4 sm:px-6 lg:px-8">
+      <div className="mx-auto max-w-[430px] px-5">
         <div className="flex flex-col items-center gap-6 text-center">
           <div className="flex flex-col items-center gap-1">
             <span className="font-serif text-xl tracking-[0.12em] text-charcoal sm:text-2xl">

@@ -22,9 +22,9 @@ export function Button({
       className={cn(
         "inline-flex items-center justify-center rounded-sm px-8 py-3 text-sm font-medium tracking-wide transition-colors duration-300 disabled:cursor-not-allowed disabled:opacity-50",
         variant === "primary" &&
-          "bg-champagne text-white hover:bg-champagne-dark",
+          "rounded-full border border-champagne/70 bg-transparent text-champagne hover:bg-champagne hover:text-ink",
         variant === "secondary" &&
-          "border border-champagne bg-transparent text-champagne hover:bg-champagne hover:text-white",
+          "rounded-full border border-champagne bg-transparent text-champagne hover:bg-champagne hover:text-ink",
         variant === "ghost" &&
           "bg-transparent text-charcoal hover:text-champagne",
         className,

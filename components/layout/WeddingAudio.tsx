@@ -75,7 +75,7 @@ export function WeddingAudio({ enabled }: WeddingAudioProps) {
       className="fixed right-4 bottom-4 z-[90] flex flex-col items-end gap-1"
     >
       {!available && (
-        <p className="max-w-[200px] rounded-sm bg-charcoal/85 px-2 py-1 text-[10px] text-white/90">
+        <p className="max-w-[200px] rounded-sm bg-ink/85 px-2 py-1 text-[10px] text-white/90">
           {content.music.missingFile}
         </p>
       )}
@@ -83,7 +83,7 @@ export function WeddingAudio({ enabled }: WeddingAudioProps) {
         type="button"
         onClick={toggle}
         disabled={!available}
-        className="flex h-12 w-12 items-center justify-center rounded-full border border-champagne/40 bg-white/95 text-champagne shadow-lg backdrop-blur-sm transition hover:bg-pearl disabled:opacity-50"
+        className="flex h-12 w-12 items-center justify-center rounded-full border border-champagne/40 bg-ink/75 text-champagne shadow-lg backdrop-blur-sm transition hover:bg-pearl disabled:opacity-50"
         aria-pressed={playing}
         aria-label={
           playing ? content.music.pause : content.music.play

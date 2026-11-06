@@ -16,7 +16,7 @@ function FamilySideCard({
   side: (typeof familyData)["groomSide"];
 }) {
   return (
-    <article className="card-elegant rounded-sm p-6 text-center md:p-8">
+    <article className="px-2 py-4 text-center">
       <p className="text-xs tracking-[0.25em] text-champagne uppercase">
         {side.label}
       </p>
@@ -69,19 +69,26 @@ export function FamilyInfo() {
           <SectionHeading
             id={headingId}
             title={content.family.title}
-            subtitle={content.family.subtitle}
           />
         </Reveal>
 
         <Reveal delay={0.05}>
-          <p className="mb-8 text-center font-serif text-lg text-charcoal-light md:mb-10">
+          <div className="card-elegant grid grid-cols-2 overflow-hidden rounded-sm">
+            <FamilySideCard side={familyData.groomSide} />
+            <div className="border-l border-champagne/25">
+              <FamilySideCard side={familyData.brideSide} />
+            </div>
+          </div>
+        </Reveal>
+
+        <Reveal delay={0.08}>
+          <p className="my-8 text-center font-serif text-lg text-charcoal-light">
             {familyData.announcement}
           </p>
         </Reveal>
 
-        <Reveal delay={0.06} className="mb-10 md:mb-12">
-          <div className="gold-divider mx-auto mb-8 w-24" />
-          <div className="flex items-end justify-center gap-4 md:gap-10">
+        <Reveal delay={0.1}>
+          <div className="flex items-end justify-center gap-4">
             <CoupleSidePortrait
               src={familyData.groomPortrait.src}
               alt={familyData.groomPortrait.alt}
@@ -102,15 +109,6 @@ export function FamilyInfo() {
             />
           </div>
         </Reveal>
-
-        <div className="mx-auto grid max-w-3xl gap-8 md:grid-cols-2">
-          <Reveal delay={0.08} direction="left">
-            <FamilySideCard side={familyData.groomSide} />
-          </Reveal>
-          <Reveal delay={0.08} direction="right">
-            <FamilySideCard side={familyData.brideSide} />
-          </Reveal>
-        </div>
       </Container>
     </section>
   );

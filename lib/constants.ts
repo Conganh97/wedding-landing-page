@@ -21,7 +21,7 @@ export const SECTION_IDS = {
 
 export const NAV_LINKS: NavLink[] = [
   { label: content.nav.home, href: `#${SECTION_IDS.hero}` },
-  { label: content.nav.intro, href: `#${SECTION_IDS.intro}` },
+  { label: content.nav.intro, href: `#${SECTION_IDS.invitation}` },
   { label: content.nav.family, href: `#${SECTION_IDS.family}` },
   { label: content.nav.events, href: `#${SECTION_IDS.events}` },
   { label: content.nav.gallery, href: `#${SECTION_IDS.gallery}` },

@@ -78,7 +78,7 @@ export function Gallery() {
             <button
               type="button"
               onClick={() => go(-1)}
-              className="absolute top-1/2 left-2 z-10 flex h-10 w-10 -translate-y-1/2 items-center justify-center rounded-full bg-white/90 text-charcoal shadow hover:bg-white"
+              className="absolute top-1/2 left-2 z-10 flex h-10 w-10 -translate-y-1/2 items-center justify-center rounded-full border border-champagne/30 bg-ink/80 text-charcoal shadow hover:bg-pearl"
               aria-label={content.gallery.prev}
             >
               ‹
@@ -86,7 +86,7 @@ export function Gallery() {
             <button
               type="button"
               onClick={() => go(1)}
-              className="absolute top-1/2 right-2 z-10 flex h-10 w-10 -translate-y-1/2 items-center justify-center rounded-full bg-white/90 text-charcoal shadow hover:bg-white"
+              className="absolute top-1/2 right-2 z-10 flex h-10 w-10 -translate-y-1/2 items-center justify-center rounded-full border border-champagne/30 bg-ink/80 text-charcoal shadow hover:bg-pearl"
               aria-label={content.gallery.next}
             >
               ›
@@ -157,7 +157,7 @@ export function Gallery() {
             initial={{ opacity: 0 }}
             animate={{ opacity: 1 }}
             exit={{ opacity: 0 }}
-            className="fixed inset-0 z-50 flex items-center justify-center bg-charcoal/92 p-4 backdrop-blur-sm"
+            className="fixed inset-0 z-50 flex items-center justify-center bg-ink/92 p-4 backdrop-blur-sm"
             role="dialog"
             aria-modal="true"
             aria-label={selectedImage.alt}

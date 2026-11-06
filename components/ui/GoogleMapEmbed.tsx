@@ -95,7 +95,7 @@ export function GoogleMapEmbed({
         <button
           type="button"
           onClick={() => setRevealed(true)}
-          className="mt-1 rounded-sm border border-champagne/45 bg-white/90 px-5 py-2.5 text-sm tracking-wide text-champagne shadow-sm transition hover:bg-champagne hover:text-white"
+          className="mt-1 rounded-sm border border-champagne/45 bg-ink/80 px-5 py-2.5 text-sm tracking-wide text-champagne shadow-sm transition hover:bg-champagne hover:text-ink"
         >
           {content.events.showMap}
         </button>
