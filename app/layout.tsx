@@ -1,5 +1,4 @@
 import type { Metadata } from "next";
-import { Cormorant_Garamond, Great_Vibes, Lato } from "next/font/google";
 import { weddingData } from "@/data/wedding";
 import { coupleShortLine } from "@/lib/couple-names";
 import { content } from "@/data/content";
@@ -12,27 +11,6 @@ import "./globals.css";
  * Ảnh share Facebook/Zalo: thay file public/images/og.jpg (khuyến nghị 1200x630px)
  * Domain production: cấu hình NEXT_PUBLIC_SITE_URL trong .env.local
  */
-
-const cormorant = Cormorant_Garamond({
-  variable: "--font-cormorant",
-  subsets: ["latin", "vietnamese"],
-  weight: ["300", "400", "500", "600"],
-  display: "swap",
-});
-
-const lato = Lato({
-  variable: "--font-lato",
-  subsets: ["latin", "latin-ext"],
-  weight: ["300", "400", "700"],
-  display: "swap",
-});
-
-const greatVibes = Great_Vibes({
-  variable: "--font-signature",
-  subsets: ["latin"],
-  weight: ["400"],
-  display: "swap",
-});
 
 const coupleName = coupleShortLine();
 const weddingDate = formatDate(weddingData.weddingDate);
@@ -78,7 +56,7 @@ export default function RootLayout({
   return (
     <html
       lang="vi"
-      className={`light ${cormorant.variable} ${lato.variable} ${greatVibes.variable} h-full antialiased`}
+      className="light h-full antialiased"
     >
       <body className="min-h-full flex flex-col font-sans">
         {children}
